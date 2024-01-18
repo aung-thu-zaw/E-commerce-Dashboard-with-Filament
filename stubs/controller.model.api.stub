@@ -5,31 +5,58 @@ namespace {{ namespace }};
 use {{ namespacedModel }};
 use {{ rootNamespace }}Http\Controllers\Controller;
 use {{ namespacedRequests }}
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 class {{ class }} extends Controller
 {
-    public function index()
+    public function index(): JsonResponse|AnonymousResourceCollection
     {
-        //
+        try {
+           //
+        } catch (\Exception $e) {
+            return $this->apiExceptionResponse($e);
+        }
     }
 
-    public function store({{ storeRequest }} $request)
+    public function store({{ storeRequest }} $request): JsonResponse
     {
-        //
+        try {
+           //
+            return response()->json($data, 201);
+        } catch (\Exception $e) {
+            return $this->apiExceptionResponse($e);
+        }
     }
 
-    public function show({{ model }} ${{ modelVariable }})
+    public function show({{ model }} ${{ modelVariable }}): JsonResponse
     {
-        //
+        try {
+           //
+            return response()->json($data, 200);
+        } catch (\Exception $e) {
+            return $this->apiExceptionResponse($e);
+        }
     }
 
-    public function update({{ updateRequest }} $request, {{ model }} ${{ modelVariable }})
+    public function update({{ updateRequest }} $request, {{ model }} ${{ modelVariable }}): JsonResponse
     {
-        //
+        try {
+           //
+            return response()->json($data, 200);
+        } catch (\Exception $e) {
+            return $this->apiExceptionResponse($e);
+        }
     }
 
-    public function destroy({{ model }} ${{ modelVariable }})
+    public function destroy({{ model }} ${{ modelVariable }}): Response
     {
-        //
+        try {
+          //
+        return response()->noContent();
+        } catch (\Exception $e) {
+            return $this->apiExceptionResponse($e);
+        }
     }
 }
