@@ -14,6 +14,15 @@ class Category extends Model
     use HasSlug;
     use Searchable;
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'status' => 'boolean',
+    ];
+
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()

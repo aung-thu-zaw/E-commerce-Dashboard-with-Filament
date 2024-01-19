@@ -20,7 +20,7 @@ class CategoryController extends Controller
         $this->middleware('permission:categories.delete', ['only' => ['destroy']]);
     }
 
-    public function index(): JsonResponse|AnonymousResourceCollection
+    public function index(): JsonResponse
     {
         try {
             $categories = Category::search(request('search'))
@@ -28,7 +28,7 @@ class CategoryController extends Controller
             ->paginate(request('per_page', 5))
             ->appends(request()->all());
 
-            return CategoryResource::collection($categories);
+            return response()->json($categories, 200);
         } catch (\Exception $e) {
             $this->apiExceptionResponse($e);
         }
