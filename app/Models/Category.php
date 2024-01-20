@@ -37,7 +37,7 @@ class Category extends Model
     }
 
     /**
-     *     @return array<string>
+     * @return array<string>
      */
     public function toSearchableArray(): array
     {

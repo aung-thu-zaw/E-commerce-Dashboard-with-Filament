@@ -29,7 +29,7 @@ class Product extends Model
     }
 
     /**
-     *     @return array<string>
+     * @return array<string>
      */
     public function toSearchableArray(): array
     {

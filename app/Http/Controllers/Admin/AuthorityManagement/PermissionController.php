@@ -17,9 +17,9 @@ class PermissionController extends Controller
     {
         try {
             $permissions = Permission::search(request('search'))
-            ->orderBy(request('sort', 'id'), request('direction', 'desc'))
-            ->paginate(request('per_page', 5))
-            ->appends(request()->all());
+                ->orderBy(request('sort', 'id'), request('direction', 'desc'))
+                ->paginate(request('per_page', 5))
+                ->appends(request()->all());
 
             return response()->json($permissions, 200);
         } catch (\Exception $e) {

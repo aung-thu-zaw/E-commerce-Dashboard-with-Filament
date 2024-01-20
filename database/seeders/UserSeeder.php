@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 
@@ -16,11 +15,11 @@ class UserSeeder extends Seeder
     {
         // Super Admin
         $superAdmin = User::factory()->create([
-           'name' => 'Super Admin',
-           'role' => 'admin',
-           'email' => 'superadmin@gmail.com',
-           'password' => 'Password!',
-           'status' => 'active'
+            'name' => 'Super Admin',
+            'role' => 'admin',
+            'email' => 'superadmin@gmail.com',
+            'password' => 'Password!',
+            'status' => 'active',
         ]);
 
         $superAdmin->assignRole(1);
@@ -35,7 +34,7 @@ class UserSeeder extends Seeder
             'role' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => 'Password!',
-            'status' => 'active'
+            'status' => 'active',
         ]);
     }
 }

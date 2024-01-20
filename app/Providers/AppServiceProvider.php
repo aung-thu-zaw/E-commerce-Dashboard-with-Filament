@@ -3,9 +3,9 @@
 namespace App\Providers;
 
 use App\Exceptions\CustomExceptionHandler;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {

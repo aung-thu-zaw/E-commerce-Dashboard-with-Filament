@@ -17,11 +17,11 @@ class AdditionalImageFactory extends Factory
      */
     public function definition(): array
     {
-        $products = Product::pluck("id")->toArray();
+        $products = Product::pluck('id')->toArray();
 
         return [
-            "product_id" => fake()->randomElement($products),
-            "image" => fake()->imageUrl()
+            'product_id' => fake()->randomElement($products),
+            'image' => fake()->imageUrl(),
         ];
     }
 }

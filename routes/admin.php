@@ -14,7 +14,7 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])
         Route::apiResource('categories', CategoryController::class);
         Route::put('/categories/{category}/change-status', ChangeCategoryStatusController::class)->middleware(['permission:categories.edit']);
 
-        Route::get('/permissions', [PermissionController::class,"index"]);
+        Route::get('/permissions', [PermissionController::class, 'index']);
 
         Route::apiResource('roles', RoleController::class);
 

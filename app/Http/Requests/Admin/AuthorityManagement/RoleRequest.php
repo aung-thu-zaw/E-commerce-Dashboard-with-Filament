@@ -23,7 +23,7 @@ class RoleRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'name' => ['required', 'string','max:255',Rule::unique("roles", "name")],
+            'name' => ['required', 'string', 'max:255', Rule::unique('roles', 'name')],
         ];
 
         $route = $this->route();

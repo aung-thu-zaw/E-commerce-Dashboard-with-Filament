@@ -9,7 +9,7 @@ use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
+    use ApiResponses;
     use AuthorizesRequests;
     use ValidatesRequests;
-    use ApiResponses;
 }

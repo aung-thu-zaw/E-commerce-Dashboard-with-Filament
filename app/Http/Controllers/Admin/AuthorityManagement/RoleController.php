@@ -22,9 +22,9 @@ class RoleController extends Controller
     {
         try {
             $roles = Role::search(request('search'))
-            ->orderBy(request('sort', 'id'), request('direction', 'desc'))
-            ->paginate(request('per_page', 5))
-            ->appends(request()->all());
+                ->orderBy(request('sort', 'id'), request('direction', 'desc'))
+                ->paginate(request('per_page', 5))
+                ->appends(request()->all());
 
             return response()->json($roles, 200);
         } catch (\Exception $e) {
@@ -44,7 +44,7 @@ class RoleController extends Controller
     public function store(RoleRequest $request): JsonResponse
     {
         try {
-            $role = Role::create($request->validated() + ["guard_name" => "web"]);
+            $role = Role::create($request->validated() + ['guard_name' => 'web']);
 
             return response()->json($role, 201);
 
@@ -68,6 +68,7 @@ class RoleController extends Controller
     {
         try {
             $role->delete();
+
             return response()->noContent();
         } catch (\Exception $e) {
             $this->apiExceptionResponse($e);

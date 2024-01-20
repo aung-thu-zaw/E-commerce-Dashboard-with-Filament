@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Admin\Categories;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CategoryRequest;
-use App\Http\Resources\Admin\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
 
 class CategoryController extends Controller
@@ -24,9 +22,9 @@ class CategoryController extends Controller
     {
         try {
             $categories = Category::search(request('search'))
-            ->orderBy(request('sort', 'id'), request('direction', 'desc'))
-            ->paginate(request('per_page', 5))
-            ->appends(request()->all());
+                ->orderBy(request('sort', 'id'), request('direction', 'desc'))
+                ->paginate(request('per_page', 5))
+                ->appends(request()->all());
 
             return response()->json($categories, 200);
         } catch (\Exception $e) {
@@ -79,6 +77,7 @@ class CategoryController extends Controller
     {
         try {
             $category->delete();
+
             return response()->noContent();
         } catch (\Exception $e) {
             $this->apiExceptionResponse($e);

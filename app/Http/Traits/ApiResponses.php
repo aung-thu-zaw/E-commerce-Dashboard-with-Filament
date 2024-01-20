@@ -8,7 +8,7 @@ trait ApiResponses
 {
     protected function apiExceptionResponse(\Exception $e): JsonResponse
     {
-        return response()->json(["message" => $e->getMessage(), "status" => 500], 500);
+        return response()->json(['message' => $e->getMessage(), 'status' => 500], 500);
     }
 
     protected function responseWithResult(string $result, string $message, int $status, ?array $data = []): JsonResponse

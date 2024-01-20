@@ -16,12 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
-    return $request->user()->load("permissions:name");
+    return $request->user()->load('permissions:name');
 });
 
-
 Route::get('abilities', AbilityController::class);
-
-
 
 require __DIR__.'/admin.php';
