@@ -18,6 +18,8 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'categories.edit', 'group' => 'Category']);
         Permission::create(['name' => 'categories.delete', 'group' => 'Category']);
 
+        Permission::create(['name' => 'permissions.view', 'group' => 'Authority Management']);
+
         Permission::create(['name' => 'roles.view', 'group' => 'Authority Management']);
         Permission::create(['name' => 'roles.create', 'group' => 'Authority Management']);
         Permission::create(['name' => 'roles.edit', 'group' => 'Authority Management']);
