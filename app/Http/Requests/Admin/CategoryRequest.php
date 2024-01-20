@@ -22,9 +22,18 @@ class CategoryRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            "name" => ["required","string","max:255",Rule::unique("categories", "name")],
-            "status" => ["required","boolean"],
+        $rules = [
+            'name' => ['required', 'string', 'max:255', Rule::unique('categories', 'name')],
+            'status' => ['required', Rule::in(['true', 'false', true, false, 0, 1])],
         ];
+
+        $route = $this->route();
+
+        if ($route && in_array($this->method(), ['PUT', 'PATCH'])) {
+            $category = $route->parameter('category');
+            $rules['name'] = ['required', 'string', 'max:255', Rule::unique('categories', 'name')->ignore($category)];
+        }
+
+        return $rules;
     }
 }

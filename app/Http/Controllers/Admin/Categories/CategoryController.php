@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Categories;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CategoryRequest;
@@ -34,11 +34,27 @@ class CategoryController extends Controller
         }
     }
 
+    public function show(Category $category): JsonResponse
+    {
+        try {
+            return response()->json($category, 200);
+        } catch (\Exception $e) {
+            $this->apiExceptionResponse($e);
+        }
+    }
+
     public function store(CategoryRequest $request): JsonResponse
     {
         try {
-            $category = Category::create($request->validated());
+
+            $validatedData = $request->validated();
+
+            $validatedData['status'] = filter_var($validatedData['status'], FILTER_VALIDATE_BOOLEAN);
+
+            $category = Category::create($validatedData);
+
             return response()->json($category, 201);
+
         } catch (\Exception $e) {
             $this->apiExceptionResponse($e);
         }
@@ -47,7 +63,12 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request, Category $category): JsonResponse
     {
         try {
-            $category->update($request->validated());
+            $validatedData = $request->validated();
+
+            $validatedData['status'] = filter_var($validatedData['status'], FILTER_VALIDATE_BOOLEAN);
+
+            $category->update($validatedData);
+
             return response()->json($category, 200);
         } catch (\Exception $e) {
             $this->apiExceptionResponse($e);
