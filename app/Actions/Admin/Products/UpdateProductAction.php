@@ -59,17 +59,17 @@ class UpdateProductAction
             }
         }
 
-        // if(isset($data["images"])) {
-        //     foreach ($data['additional_images'] as $additionalImage) {
+        if(isset($data["additional_images"])) {
+            foreach ($data['additional_images'] as $additionalImage) {
 
-        //         $originalName = $additionalImage->getClientOriginalName();
+                $originalName = $additionalImage->getClientOriginalName();
 
-        //         $fileName = time().'-'.$originalName;
+                $fileName = time().'-'.$originalName;
 
-        //         $additionalImage->storeAs('products', $fileName);
+                $additionalImage->storeAs('products', $fileName);
 
-        //         AdditionalImage::create(['product_id' => $product->id, 'image' => $fileName]);
-        //     }
-        // }
+                AdditionalImage::create(['product_id' => $product->id, 'image' => $fileName]);
+            }
+        }
     }
 }

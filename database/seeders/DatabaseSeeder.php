@@ -17,9 +17,11 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             UserSeeder::class,
             CategorySeeder::class,
-            // ProductSeeder::class,
-            // AdditionalImageSeeder::class,
-            // AddonSeeder::class
+            ProductSeeder::class,
+            AdditionalImageSeeder::class,
+            AddonSeeder::class,
+            ProductReviewSeeder::class,
+            ProductReviewResponseSeeder::class
         ]);
     }
 }

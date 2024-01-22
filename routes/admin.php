@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin\AuthorityManagement\PermissionController;
 use App\Http\Controllers\Admin\AuthorityManagement\RoleController;
 use App\Http\Controllers\Admin\Categories\CategoryController;
 use App\Http\Controllers\Admin\Categories\ChangeCategoryStatusController;
+use App\Http\Controllers\Admin\ProductReviews\ChangeProductReviewStatusController;
+use App\Http\Controllers\Admin\ProductReviews\ProductReviewController;
 use App\Http\Controllers\Admin\Products\ChangeProductStatusController;
 use App\Http\Controllers\Admin\Products\GetResourcesForProductFormController;
 use App\Http\Controllers\Admin\Products\ProductController;
@@ -20,6 +22,9 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])
         Route::apiResource('products', ProductController::class);
         Route::put('/products/{product}/change-status', ChangeProductStatusController::class)->middleware(['permission:products.edit']);
         Route::get('/resources/for-product', GetResourcesForProductFormController::class)->middleware(['permission:products.create','permission:products.edit']);
+
+        Route::apiResource('product-reviews', ProductReviewController::class)->only(["index","destroy"]);
+        Route::put('/product-reviews/{product_review}/change-status', ChangeProductReviewStatusController::class)->middleware(['permission:product-reviews.edit']);
 
         Route::get('/permissions', [PermissionController::class, 'index']);
 

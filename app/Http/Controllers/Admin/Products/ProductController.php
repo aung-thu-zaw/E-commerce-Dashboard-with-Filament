@@ -27,7 +27,7 @@ class ProductController extends Controller
         $this->middleware('permission:products.delete', ['only' => ['destroy']]);
     }
 
-    public function index(): JsonResponse|AnonymousResourceCollection
+    public function index(): JsonResponse
     {
         try {
             $products = Product::search(request('search'))
