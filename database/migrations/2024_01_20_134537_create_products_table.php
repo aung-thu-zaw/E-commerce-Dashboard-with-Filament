@@ -23,7 +23,6 @@ return new class() extends Migration
             $table->boolean('is_available')->default(false);
             $table->decimal('base_price', 8, 2)->default(0);
             $table->decimal('discount_price', 8, 2)->default(0)->nullable();
-            $table->timestamp('discount_start_time')->nullable();
             $table->timestamp('discount_end_time')->nullable();
             $table->enum('status', ['draft', 'published']);
             $table->timestamps();
