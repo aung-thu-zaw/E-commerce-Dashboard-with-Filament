@@ -7,7 +7,6 @@ use App\Actions\Admin\Products\UpdateProductAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProductRequest;
 use App\Http\Resources\Admin\Products\ProductResource;
-use App\Http\Traits\ImageUpload;
 use App\Models\AdditionalImage;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Builder;
@@ -17,8 +16,6 @@ use Illuminate\Http\Response;
 
 class ProductController extends Controller
 {
-    use ImageUpload;
-
     public function __construct()
     {
         $this->middleware('permission:products.view', ['only' => ['index']]);

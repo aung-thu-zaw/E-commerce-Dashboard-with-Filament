@@ -9,6 +9,9 @@ use App\Http\Controllers\Admin\Coupons\CouponController;
 use App\Http\Controllers\Admin\DailyOffers\DailyOfferController;
 use App\Http\Controllers\Admin\DailyOffers\GetResourcesForDailyOfferFormController;
 use App\Http\Controllers\Admin\ManageBlog\BlogCategoryController;
+use App\Http\Controllers\Admin\ManageBlog\BlogContents\BlogContentController;
+use App\Http\Controllers\Admin\ManageBlog\BlogContents\ChangeBlogContentStatusController;
+use App\Http\Controllers\Admin\ManageBlog\BlogContents\GetResourcesForBlogContentFormController;
 use App\Http\Controllers\Admin\ManageShipping\DeliveryAreaController;
 use App\Http\Controllers\Admin\ManageShipping\ShippingMethodController;
 use App\Http\Controllers\Admin\ProductReviews\ChangeProductReviewStatusController;
@@ -22,19 +25,18 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])
     ->prefix('admin')
     ->name('admin.')
     ->group(function () {
-
         Route::apiResource('categories', CategoryController::class);
         Route::put('/categories/{category}/change-status', ChangeCategoryStatusController::class)->middleware(['permission:categories.edit']);
 
         Route::apiResource('products', ProductController::class);
         Route::put('/products/{product}/change-status', ChangeProductStatusController::class)->middleware(['permission:products.edit']);
-        Route::get('/resources/for-product', GetResourcesForProductFormController::class)->middleware(['permission:products.create','permission:products.edit']);
+        Route::get('/resources/for-product', GetResourcesForProductFormController::class)->middleware(['permission:products.create', 'permission:products.edit']);
 
-        Route::apiResource('product-reviews', ProductReviewController::class)->only(["index","destroy"]);
+        Route::apiResource('product-reviews', ProductReviewController::class)->only(['index', 'destroy']);
         Route::put('/product-reviews/{product_review}/change-status', ChangeProductReviewStatusController::class)->middleware(['permission:product-reviews.edit']);
 
         Route::apiResource('daily-offers', DailyOfferController::class);
-        Route::get('/resources/for-daily-offer', GetResourcesForDailyOfferFormController::class)->middleware(['permission:daily-offers.create','permission:daily-offers.edit']);
+        Route::get('/resources/for-daily-offer', GetResourcesForDailyOfferFormController::class)->middleware(['permission:daily-offers.create', 'permission:daily-offers.edit']);
 
         Route::apiResource('coupons', CouponController::class);
         Route::put('/coupons/{coupon}/change-status', ChangeCouponStatusController::class)->middleware(['permission:coupons.edit']);
@@ -44,6 +46,10 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])
         Route::apiResource('shipping-methods', ShippingMethodController::class);
 
         Route::apiResource('blog-categories', BlogCategoryController::class);
+
+        Route::apiResource('blog-contents', BlogContentController::class);
+        Route::put('/blog-contents/{blog_content}/change-status', ChangeBlogContentStatusController::class)->middleware(['permission:blog-contents.edit']);
+        Route::get('/resources/for-blog-content', GetResourcesForBlogContentFormController::class)->middleware(['permission:blog-contents.create', 'permission:blog-contents.edit']);
 
         Route::get('/permissions', [PermissionController::class, 'index']);
 

@@ -15,7 +15,7 @@ class CreateProductAction
     /**
      * @param  array<mixed>  $data
      */
-    public function handle(array $data): void
+    public function handle(array $data): Product
     {
         $image = isset($data["image"]) ? $this->createImage($data["image"], 'products') : null;
 
@@ -55,5 +55,7 @@ class CreateProductAction
                 AdditionalImage::create(['product_id' => $product->id, 'image' => $fileName]);
             }
         }
+
+        return $product;
     }
 }

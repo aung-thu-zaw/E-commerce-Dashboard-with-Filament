@@ -15,7 +15,7 @@ class UpdateProductAction
     /**
      * @param  array<mixed>  $data
      */
-    public function handle(array $data, Product $product): void
+    public function handle(array $data, Product $product): Product
     {
         $image = isset($data['image']) && ! is_string($data['image']) ? $this->updateImage($data['image'], $product->image, 'products') : $product->image;
 
@@ -71,5 +71,7 @@ class UpdateProductAction
                 AdditionalImage::create(['product_id' => $product->id, 'image' => $fileName]);
             }
         }
+
+        return $product;
     }
 }
