@@ -28,7 +28,9 @@ class DatabaseSeeder extends Seeder
             DeliveryAreaSeeder::class,
             ShippingMethodSeeder::class,
             BlogCategorySeeder::class,
-            BlogContentSeeder::class
+            BlogContentSeeder::class,
+            BlogCommentSeeder::class,
+            BlogCommentResponseSeeder::class
         ]);
     }
 }

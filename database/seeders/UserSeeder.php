@@ -36,5 +36,7 @@ class UserSeeder extends Seeder
             'password' => 'Password!',
             'status' => 'active',
         ]);
+
+        User::factory(100)->create(["role" => "user"]);
     }
 }

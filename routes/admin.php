@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\Coupons\CouponController;
 use App\Http\Controllers\Admin\DailyOffers\DailyOfferController;
 use App\Http\Controllers\Admin\DailyOffers\GetResourcesForDailyOfferFormController;
 use App\Http\Controllers\Admin\ManageBlog\BlogCategoryController;
+use App\Http\Controllers\Admin\ManageBlog\BlogCommentController;
 use App\Http\Controllers\Admin\ManageBlog\BlogContents\BlogContentController;
 use App\Http\Controllers\Admin\ManageBlog\BlogContents\ChangeBlogContentStatusController;
 use App\Http\Controllers\Admin\ManageBlog\BlogContents\GetResourcesForBlogContentFormController;
@@ -50,6 +51,8 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])
         Route::apiResource('blog-contents', BlogContentController::class);
         Route::put('/blog-contents/{blog_content}/change-status', ChangeBlogContentStatusController::class)->middleware(['permission:blog-contents.edit']);
         Route::get('/resources/for-blog-content', GetResourcesForBlogContentFormController::class)->middleware(['permission:blog-contents.create', 'permission:blog-contents.edit']);
+
+        Route::apiResource('blog-comments', BlogCommentController::class)->only(['index', 'destroy']);
 
         Route::get('/permissions', [PermissionController::class, 'index']);
 

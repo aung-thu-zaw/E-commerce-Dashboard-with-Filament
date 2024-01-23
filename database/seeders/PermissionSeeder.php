@@ -23,7 +23,6 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'products.delete', 'group' => 'Product']);
 
         Permission::create(['name' => 'product-reviews.view', 'group' => 'Product Review']);
-        Permission::create(['name' => 'product-reviews.edit', 'group' => 'Product Review']);
         Permission::create(['name' => 'product-reviews.delete', 'group' => 'Product Review']);
         Permission::create(['name' => 'product-reviews.response', 'group' => 'Product Review']);
 
@@ -56,6 +55,10 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'blog-contents.create', 'group' => 'Manage Blog']);
         Permission::create(['name' => 'blog-contents.edit', 'group' => 'Manage Blog']);
         Permission::create(['name' => 'blog-contents.delete', 'group' => 'Manage Blog']);
+
+        Permission::create(['name' => 'blog-comments.view', 'group' => 'Manage Blog']);
+        Permission::create(['name' => 'blog-comments.delete', 'group' => 'Manage Blog']);
+        Permission::create(['name' => 'blog-comments.response', 'group' => 'Manage Blog']);
 
         Permission::create(['name' => 'permissions.view', 'group' => 'Authority Management']);
 
