@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
             AdditionalImageSeeder::class,
             AddonSeeder::class,
             ProductReviewSeeder::class,
-            ProductReviewResponseSeeder::class
+            ProductReviewResponseSeeder::class,
+            DailyOfferSeeder::class
         ]);
     }
 }

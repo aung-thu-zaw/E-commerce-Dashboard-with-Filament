@@ -27,6 +27,11 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'product-reviews.delete', 'group' => 'Product Review']);
         Permission::create(['name' => 'product-reviews.response', 'group' => 'Product Review']);
 
+        Permission::create(['name' => 'daily-offers.view', 'group' => 'Daily Offer']);
+        Permission::create(['name' => 'daily-offers.create', 'group' => 'Daily Offer']);
+        Permission::create(['name' => 'daily-offers.edit', 'group' => 'Daily Offer']);
+        Permission::create(['name' => 'daily-offers.delete', 'group' => 'Daily Offer']);
+
         Permission::create(['name' => 'permissions.view', 'group' => 'Authority Management']);
 
         Permission::create(['name' => 'roles.view', 'group' => 'Authority Management']);
