@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\ManageBlog\BlogContents\ChangeBlogContentStatusCo
 use App\Http\Controllers\Admin\ManageBlog\BlogContents\GetResourcesForBlogContentFormController;
 use App\Http\Controllers\Admin\ManageShipping\DeliveryAreaController;
 use App\Http\Controllers\Admin\ManageShipping\ShippingMethodController;
+use App\Http\Controllers\Admin\Newsletter\SubscriberController;
 use App\Http\Controllers\Admin\ProductReviews\ChangeProductReviewStatusController;
 use App\Http\Controllers\Admin\ProductReviews\ProductReviewController;
 use App\Http\Controllers\Admin\Products\ChangeProductStatusController;
@@ -53,6 +54,8 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])
         Route::get('/resources/for-blog-content', GetResourcesForBlogContentFormController::class)->middleware(['permission:blog-contents.create', 'permission:blog-contents.edit']);
 
         Route::apiResource('blog-comments', BlogCommentController::class)->only(['index', 'destroy']);
+
+        Route::apiResource('subscribers', SubscriberController::class)->only(['index', 'destroy']);
 
         Route::get('/permissions', [PermissionController::class, 'index']);
 

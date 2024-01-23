@@ -30,7 +30,8 @@ class DatabaseSeeder extends Seeder
             BlogCategorySeeder::class,
             BlogContentSeeder::class,
             BlogCommentSeeder::class,
-            BlogCommentResponseSeeder::class
+            BlogCommentResponseSeeder::class,
+            SubscriberSeeder::class
         ]);
     }
 }
