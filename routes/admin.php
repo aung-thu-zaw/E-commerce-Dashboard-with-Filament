@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin\AuthorityManagement\PermissionController;
 use App\Http\Controllers\Admin\AuthorityManagement\RoleController;
 use App\Http\Controllers\Admin\Categories\CategoryController;
 use App\Http\Controllers\Admin\Categories\ChangeCategoryStatusController;
+use App\Http\Controllers\Admin\Coupons\ChangeCouponStatusController;
+use App\Http\Controllers\Admin\Coupons\CouponController;
 use App\Http\Controllers\Admin\DailyOffers\DailyOfferController;
 use App\Http\Controllers\Admin\DailyOffers\GetResourcesForDailyOfferFormController;
 use App\Http\Controllers\Admin\ProductReviews\ChangeProductReviewStatusController;
@@ -30,6 +32,9 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])
 
         Route::apiResource('daily-offers', DailyOfferController::class);
         Route::get('/resources/for-daily-offer', GetResourcesForDailyOfferFormController::class)->middleware(['permission:daily-offers.create','permission:daily-offers.edit']);
+
+        Route::apiResource('coupons', CouponController::class);
+        Route::put('/coupons/{coupon}/change-status', ChangeCouponStatusController::class)->middleware(['permission:coupons.edit']);
 
         Route::get('/permissions', [PermissionController::class, 'index']);
 

@@ -32,6 +32,11 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'daily-offers.edit', 'group' => 'Daily Offer']);
         Permission::create(['name' => 'daily-offers.delete', 'group' => 'Daily Offer']);
 
+        Permission::create(['name' => 'coupons.view', 'group' => 'Coupon']);
+        Permission::create(['name' => 'coupons.create', 'group' => 'Coupon']);
+        Permission::create(['name' => 'coupons.edit', 'group' => 'Coupon']);
+        Permission::create(['name' => 'coupons.delete', 'group' => 'Coupon']);
+
         Permission::create(['name' => 'permissions.view', 'group' => 'Authority Management']);
 
         Permission::create(['name' => 'roles.view', 'group' => 'Authority Management']);

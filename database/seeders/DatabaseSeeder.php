@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
             AddonSeeder::class,
             ProductReviewSeeder::class,
             ProductReviewResponseSeeder::class,
-            DailyOfferSeeder::class
+            DailyOfferSeeder::class,
+            CouponSeeder::class
         ]);
     }
 }
