@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\Coupons\ChangeCouponStatusController;
 use App\Http\Controllers\Admin\Coupons\CouponController;
 use App\Http\Controllers\Admin\DailyOffers\DailyOfferController;
 use App\Http\Controllers\Admin\DailyOffers\GetResourcesForDailyOfferFormController;
+use App\Http\Controllers\Admin\ManageShipping\DeliveryAreaController;
+use App\Http\Controllers\Admin\ManageShipping\ShippingMethodController;
 use App\Http\Controllers\Admin\ProductReviews\ChangeProductReviewStatusController;
 use App\Http\Controllers\Admin\ProductReviews\ProductReviewController;
 use App\Http\Controllers\Admin\Products\ChangeProductStatusController;
@@ -35,6 +37,10 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])
 
         Route::apiResource('coupons', CouponController::class);
         Route::put('/coupons/{coupon}/change-status', ChangeCouponStatusController::class)->middleware(['permission:coupons.edit']);
+
+        Route::apiResource('delivery-areas', DeliveryAreaController::class);
+
+        Route::apiResource('shipping-methods', ShippingMethodController::class);
 
         Route::get('/permissions', [PermissionController::class, 'index']);
 

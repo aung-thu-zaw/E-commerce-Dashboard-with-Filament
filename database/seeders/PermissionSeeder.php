@@ -37,6 +37,16 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'coupons.edit', 'group' => 'Coupon']);
         Permission::create(['name' => 'coupons.delete', 'group' => 'Coupon']);
 
+        Permission::create(['name' => 'delivery-areas.view', 'group' => 'Manage Shipping']);
+        Permission::create(['name' => 'delivery-areas.create', 'group' => 'Manage Shipping']);
+        Permission::create(['name' => 'delivery-areas.edit', 'group' => 'Manage Shipping']);
+        Permission::create(['name' => 'delivery-areas.delete', 'group' => 'Manage Shipping']);
+
+        Permission::create(['name' => 'shipping-methods.view', 'group' => 'Manage Shipping']);
+        Permission::create(['name' => 'shipping-methods.create', 'group' => 'Manage Shipping']);
+        Permission::create(['name' => 'shipping-methods.edit', 'group' => 'Manage Shipping']);
+        Permission::create(['name' => 'shipping-methods.delete', 'group' => 'Manage Shipping']);
+
         Permission::create(['name' => 'permissions.view', 'group' => 'Authority Management']);
 
         Permission::create(['name' => 'roles.view', 'group' => 'Authority Management']);

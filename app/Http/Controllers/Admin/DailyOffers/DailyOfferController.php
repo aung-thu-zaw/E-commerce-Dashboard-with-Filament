@@ -20,7 +20,7 @@ class DailyOfferController extends Controller
         $this->middleware('permission:daily-offers.delete', ['only' => ['destroy']]);
     }
 
-    public function index(): JsonResponse|AnonymousResourceCollection
+    public function index(): JsonResponse
     {
         try {
             $dailyOffers = DailyOffer::search(request('search'))
