@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
             DailyOfferSeeder::class,
             CouponSeeder::class,
             DeliveryAreaSeeder::class,
-            ShippingMethodSeeder::class
+            ShippingMethodSeeder::class,
+            BlogCategorySeeder::class
         ]);
     }
 }

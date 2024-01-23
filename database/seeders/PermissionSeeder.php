@@ -47,6 +47,11 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'shipping-methods.edit', 'group' => 'Manage Shipping']);
         Permission::create(['name' => 'shipping-methods.delete', 'group' => 'Manage Shipping']);
 
+        Permission::create(['name' => 'blog-categories.view', 'group' => 'Manage Blog']);
+        Permission::create(['name' => 'blog-categories.create', 'group' => 'Manage Blog']);
+        Permission::create(['name' => 'blog-categories.edit', 'group' => 'Manage Blog']);
+        Permission::create(['name' => 'blog-categories.delete', 'group' => 'Manage Blog']);
+
         Permission::create(['name' => 'permissions.view', 'group' => 'Authority Management']);
 
         Permission::create(['name' => 'roles.view', 'group' => 'Authority Management']);
