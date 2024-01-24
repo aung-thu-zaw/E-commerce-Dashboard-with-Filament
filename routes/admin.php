@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\Newsletter\SubscriberController;
 use App\Http\Controllers\Admin\ProductReviews\ChangeProductReviewStatusController;
 use App\Http\Controllers\Admin\ProductReviews\ProductReviewController;
 use App\Http\Controllers\Admin\Products\ChangeProductStatusController;
+use App\Http\Controllers\Admin\Products\DeleteProductAdditionalImageController;
 use App\Http\Controllers\Admin\Products\GetResourcesForProductFormController;
 use App\Http\Controllers\Admin\Products\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +34,7 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])
         Route::apiResource('products', ProductController::class);
         Route::put('/products/{product}/change-status', ChangeProductStatusController::class)->middleware(['permission:products.edit']);
         Route::get('/resources/for-product', GetResourcesForProductFormController::class)->middleware(['permission:products.create', 'permission:products.edit']);
+        Route::delete('/products/additional-images/{additional_image}', DeleteProductAdditionalImageController::class);
 
         Route::apiResource('product-reviews', ProductReviewController::class)->only(['index', 'destroy']);
         Route::put('/product-reviews/{product_review}/change-status', ChangeProductReviewStatusController::class)->middleware(['permission:product-reviews.edit']);

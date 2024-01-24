@@ -13,7 +13,9 @@ class ChangeProductStatusController extends Controller
     public function __invoke(Request $request, Product $product): JsonResponse
     {
         try {
-            $request->validate(['status' => ['required', Rule::in(['draft','published'])]]);
+            $request->validate(['status' => ['required', Rule::in(['published','hidden'])]]);
+
+            $product->load('category:id,name');
 
             $product->update(['status' => $request->status]);
 

@@ -19,9 +19,11 @@ class BlogCommentController extends Controller
 
     public function index(): JsonResponse
     {
+
         try {
             $blogComments = BlogComment::search(request('search'))
             ->with(['blogContent:id,title,thumbnail','user:id,name,avatar'])
+            ->filterBy(request(['response']))
             ->orderBy(request('sort', 'id'), request('direction', 'desc'))
             ->paginate(request('per_page', 5))
             ->appends(request()->all());

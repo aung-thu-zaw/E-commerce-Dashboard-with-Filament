@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Categories;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CategoryRequest;
 use App\Models\Category;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
@@ -14,7 +15,7 @@ class CategoryController extends Controller
     {
         $this->middleware('permission:categories.view', ['only' => ['index']]);
         $this->middleware('permission:categories.create', ['only' => ['store']]);
-        $this->middleware('permission:categories.edit', ['only' => ['show','update']]);
+        $this->middleware('permission:categories.edit', ['only' => ['show', 'update']]);
         $this->middleware('permission:categories.delete', ['only' => ['destroy']]);
     }
 
@@ -22,6 +23,9 @@ class CategoryController extends Controller
     {
         try {
             $categories = Category::search(request('search'))
+                ->query(function (Builder $builder) {
+                    $builder->filterBy(request(['status']));
+                })
                 ->orderBy(request('sort', 'id'), request('direction', 'desc'))
                 ->paginate(request('per_page', 5))
                 ->appends(request()->all());
@@ -44,7 +48,6 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request): JsonResponse
     {
         try {
-
             $validatedData = $request->validated();
 
             $validatedData['status'] = filter_var($validatedData['status'], FILTER_VALIDATE_BOOLEAN);
@@ -52,7 +55,6 @@ class CategoryController extends Controller
             $category = Category::create($validatedData);
 
             return response()->json($category, 201);
-
         } catch (\Exception $e) {
             $this->apiExceptionResponse($e);
         }
@@ -77,7 +79,6 @@ class CategoryController extends Controller
     {
         try {
             $category->delete();
-
             return response()->noContent();
         } catch (\Exception $e) {
             $this->apiExceptionResponse($e);

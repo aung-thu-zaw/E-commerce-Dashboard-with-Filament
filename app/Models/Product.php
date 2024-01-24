@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -74,4 +75,16 @@ class Product extends Model
         }
     }
 
+    public function scopeFilterBy(Builder $query, ?array $filterBy): Builder
+    {
+        return $query
+            ->when(isset($filterBy['status']) && in_array($filterBy['status'], ["draft", "published", "hidden"]), function ($query) use ($filterBy) {
+                $query->where('status', $filterBy['status']);
+            })
+            ->when(isset($filterBy['category']) && $filterBy['category'] !== "", function ($query) use ($filterBy) {
+                $query->whereHas('category', function ($query) use ($filterBy) {
+                    $query->where("slug", $filterBy['category']);
+                });
+            });
+    }
 }

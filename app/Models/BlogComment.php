@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -33,7 +34,14 @@ class BlogComment extends Model
         })
         ->orWhereHas('blogContent', function ($subquery) use ($searchTerm) {
             $subquery->where('title', 'like', "%{$searchTerm}%");
-        })
-        ->orWhere('comment', 'like', "%{$searchTerm}%");
+        });
+    }
+
+    public function scopeFilterBy(Builder $query, ?array $filterBy): Builder
+    {
+        return $query
+            ->when(isset($filterBy['response']) && in_array($filterBy['response'], ['awaiting', 'responded']), function ($query) use ($filterBy) {
+                $query->where('response_status', $filterBy['response']);
+            });
     }
 }

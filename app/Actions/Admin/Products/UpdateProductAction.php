@@ -27,8 +27,8 @@ class UpdateProductAction
             "qty" => $data['qty'],
             "is_available" => filter_var($data['is_available'], FILTER_VALIDATE_BOOLEAN),
             "base_price" => $data['base_price'],
-            "discount_price" => $data['discount_price'],
-            "discount_end_time" => $data['discount_end_time'],
+            "discount_price" => $data['discount_price'] ?? null,
+            "discount_end_time" => $data['discount_end_time'] ?? null,
             "status" => $data['status'],
             "image" => $image,
         ]);

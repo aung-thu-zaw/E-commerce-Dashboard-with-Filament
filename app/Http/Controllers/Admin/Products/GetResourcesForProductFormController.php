@@ -12,7 +12,7 @@ class GetResourcesForProductFormController extends Controller
     public function __invoke(): JsonResponse
     {
         try {
-            $categories = Category::select("id", "name")->where("status", true)->get();
+            $categories = Category::select("id", "name", "slug")->where("status", true)->get();
 
             return response()->json($categories, 200);
         } catch (\Exception $e) {

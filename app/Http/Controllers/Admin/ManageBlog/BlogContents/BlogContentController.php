@@ -26,6 +26,7 @@ class BlogContentController extends Controller
         try {
             $blogContents = BlogContent::search(request('search'))
                 ->with(['blogCategory:id,name', 'author:id,name'])
+                ->filterBy(request(['status', 'category']))
                 ->orderBy(request('sort', 'id'), request('direction', 'desc'))
                 ->paginate(request('per_page', 5))
                 ->appends(request()->all());

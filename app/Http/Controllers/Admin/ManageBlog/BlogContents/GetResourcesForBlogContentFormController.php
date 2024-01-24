@@ -12,7 +12,7 @@ class GetResourcesForBlogContentFormController extends Controller
     public function __invoke(): JsonResponse
     {
         try {
-            $blogCategories = BlogCategory::select("id", "name")->get();
+            $blogCategories = BlogCategory::select("id", "name", "slug")->get();
 
             return response()->json($blogCategories, 200);
         } catch (\Exception $e) {

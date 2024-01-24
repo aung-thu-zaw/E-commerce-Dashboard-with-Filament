@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -58,12 +59,22 @@ class BlogContent extends Model
 
     public function scopeSearch($query, $searchTerm)
     {
-        return $query->whereHas('blogCategory', function ($subquery) use ($searchTerm) {
-            $subquery->where('name', 'like', "%{$searchTerm}%");
-        })
-        ->orWhereHas('author', function ($subquery) use ($searchTerm) {
+        return $query->whereHas('author', function ($subquery) use ($searchTerm) {
             $subquery->where('name', 'like', "%{$searchTerm}%");
         })
         ->orWhere('title', 'like', "%{$searchTerm}%");
+    }
+
+    public function scopeFilterBy(Builder $query, ?array $filterBy): Builder
+    {
+        return $query
+            ->when(isset($filterBy['status']) && in_array($filterBy['status'], ['draft', 'published','hidden']), function ($query) use ($filterBy) {
+                $query->where('status', $filterBy['status']);
+            })
+            ->when(isset($filterBy['category']) && $filterBy['category'] !== "", function ($query) use ($filterBy) {
+                $query->whereHas('blogCategory', function ($query) use ($filterBy) {
+                    $query->where("slug", $filterBy['category']);
+                });
+            });
     }
 }

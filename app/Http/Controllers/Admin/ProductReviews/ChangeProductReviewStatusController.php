@@ -15,6 +15,8 @@ class ChangeProductReviewStatusController extends Controller
         try {
             $request->validate(['status' => ['required', Rule::in(['published','hidden'])]]);
 
+            $productReview->load(['product:id,name,image','reviewer:id,name,avatar']);
+
             $productReview->update(['status' => $request->status]);
 
             return response()->json($productReview, 200);

@@ -23,6 +23,7 @@ class ProductReviewController extends Controller
         try {
             $productReviews = ProductReview::search(request('search'))
             ->with(['product:id,name,image','reviewer:id,name,avatar'])
+            ->filterBy(request(['status','response']))
             ->orderBy(request('sort', 'id'), request('direction', 'desc'))
             ->paginate(request('per_page', 5))
             ->appends(request()->all());

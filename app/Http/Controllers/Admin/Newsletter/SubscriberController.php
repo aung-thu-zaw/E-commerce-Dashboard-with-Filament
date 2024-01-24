@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Newsletter;
 
 use App\Http\Controllers\Controller;
 use App\Models\Subscriber;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -15,6 +16,9 @@ class SubscriberController extends Controller
     {
         try {
             $subscribers = Subscriber::search(request('search'))
+            ->query(function (Builder $builder) {
+                $builder->filterBy(request(['status']));
+            })
             ->orderBy(request('sort', 'id'), request('direction', 'desc'))
             ->paginate(request('per_page', 5))
             ->appends(request()->all());

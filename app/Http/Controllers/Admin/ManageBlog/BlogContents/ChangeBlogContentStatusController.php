@@ -26,6 +26,8 @@ class ChangeBlogContentStatusController extends Controller
             }
 
 
+            $blogContent->load(['blogCategory:id,name', 'author:id,name']);
+
             return response()->json($blogContent, 200);
         } catch (\Exception $e) {
             $this->apiExceptionResponse($e);
