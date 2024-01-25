@@ -79,6 +79,11 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'registered-accounts.edit', 'group' => 'Account Management']);
         Permission::create(['name' => 'registered-accounts.delete', 'group' => 'Account Management']);
 
+        Permission::create(['name' => 'admin-manage.view', 'group' => 'Account Management']);
+        Permission::create(['name' => 'admin-manage.create', 'group' => 'Account Management']);
+        Permission::create(['name' => 'admin-manage.edit', 'group' => 'Account Management']);
+        Permission::create(['name' => 'admin-manage.delete', 'group' => 'Account Management']);
+
         Permission::create(['name' => 'permissions.view', 'group' => 'Authority Management']);
 
         Permission::create(['name' => 'roles.view', 'group' => 'Authority Management']);

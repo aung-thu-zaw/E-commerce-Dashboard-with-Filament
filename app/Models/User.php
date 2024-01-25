@@ -6,9 +6,11 @@ use App\Notifications\Auth\ResetPasswordQueued;
 use App\Notifications\Auth\VerifyEmailQueued;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Scout\Searchable;
 use Spatie\Permission\Traits\HasPermissions;
@@ -54,6 +56,20 @@ class User extends Authenticatable implements MustVerifyEmail
         ];
     }
 
+    protected function password(): Attribute
+    {
+        return Attribute::make(
+            set: fn ($value) => Hash::needsRehash($value) ? bcrypt($value) : $value,
+        );
+    }
+
+    protected function avatar(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => str_starts_with($value, 'http') || ! $value ? $value : asset("storage/avatars/users/$value"),
+        );
+    }
+
     public function sendEmailVerificationNotification()
     {
         $this->notify(new VerifyEmailQueued());
@@ -62,6 +78,13 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordQueued($token));
+    }
+
+    public static function deleteAvatar(?string $avatar): void
+    {
+        if (! empty($avatar) && file_exists(storage_path('app/public/avatars/users/'.pathinfo($avatar, PATHINFO_BASENAME)))) {
+            unlink(storage_path('app/public/avatars/users/'.pathinfo($avatar, PATHINFO_BASENAME)));
+        }
     }
 
     public function scopeFilterBy(Builder $query, ?array $filterBy): Builder

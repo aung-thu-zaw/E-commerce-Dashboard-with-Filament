@@ -1,7 +1,10 @@
 <?php
 
-use App\Http\Controllers\Admin\AccountManagement\ChangeRegisteredAccountStatusController;
-use App\Http\Controllers\Admin\AccountManagement\RegisteredAccountController;
+use App\Http\Controllers\Admin\AccountManagement\AdminManage\AdminManageController;
+use App\Http\Controllers\Admin\AccountManagement\AdminManage\ChangeAdminAccountStatusController;
+use App\Http\Controllers\Admin\AccountManagement\AdminManage\GetResourcesForAdminMangeFormController;
+use App\Http\Controllers\Admin\AccountManagement\RegisteredAccounts\ChangeRegisteredAccountStatusController;
+use App\Http\Controllers\Admin\AccountManagement\RegisteredAccounts\RegisteredAccountController;
 use App\Http\Controllers\Admin\AuthorityManagement\PermissionController;
 use App\Http\Controllers\Admin\AuthorityManagement\RoleController;
 use App\Http\Controllers\Admin\Categories\CategoryController;
@@ -70,12 +73,13 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])
 
         Route::post('/send-newsletter', SendNewsletterController::class);
 
-        // Route::apiResource('/registered-accounts', RegisteredAccountController::class)->only(["index","show","destroy"])->parameters(['registered_account' => 'user']);
-
-
         Route::get('/registered-accounts', [RegisteredAccountController::class,"index"]);
         Route::delete('/registered-accounts/{user}', [RegisteredAccountController::class,"destroy"]);
         Route::put('/registered-accounts/{user}/change-status', ChangeRegisteredAccountStatusController::class)->middleware(['permission:registered-accounts.edit']);
+
+        Route::apiResource('admin-accounts', AdminManageController::class);
+        Route::put('/admin-accounts/{user}/change-status', ChangeAdminAccountStatusController::class)->middleware(['permission:admin-manage.edit']);
+        Route::get('/resources/for-admin', GetResourcesForAdminMangeFormController::class)->middleware(['permission:admin-manage.create', 'permission:admin-manage.edit']);
 
         Route::get('/permissions', [PermissionController::class, 'index']);
 

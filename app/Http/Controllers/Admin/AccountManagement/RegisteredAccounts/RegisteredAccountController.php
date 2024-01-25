@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\AccountManagement;
+namespace App\Http\Controllers\Admin\AccountManagement\RegisteredAccounts;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -38,6 +38,7 @@ class RegisteredAccountController extends Controller
     public function destroy(User $user): Response
     {
         try {
+            User::deleteAvatar($user->avatar);
             $user->delete();
             return response()->noContent();
         } catch (\Exception $e) {
