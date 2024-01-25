@@ -17,7 +17,7 @@ trait ImageUpload
         return $fileName;
     }
 
-    public function updateImage(UploadedFile $image, string $oldImage = null, string $folderName): string
+    public function updateImage(UploadedFile $image, ?string $oldImage, string $folderName): string
     {
 
         if (is_string($oldImage) && ! empty($oldImage) && file_exists(storage_path("app/public/$folderName/".pathinfo($oldImage, PATHINFO_BASENAME)))) {

@@ -2,9 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\BlogComment;
 use App\Models\BlogCommentResponse;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class BlogCommentResponseSeeder extends Seeder

@@ -13,7 +13,7 @@ class ChangeCouponStatusController extends Controller
     public function __invoke(Request $request, Coupon $coupon): JsonResponse
     {
         try {
-            $request->validate(['status' => ['required', Rule::in(['active','inactive'])]]);
+            $request->validate(['status' => ['required', Rule::in(['active', 'inactive'])]]);
 
             $coupon->update(['status' => $request->status]);
 

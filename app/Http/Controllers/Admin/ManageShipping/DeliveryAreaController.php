@@ -6,10 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ManageShipping\DeliveryAreaRequest;
 use App\Models\DeliveryArea;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
-use Illuminate\Validation\Rule;
 
 class DeliveryAreaController extends Controller
 {
@@ -70,6 +67,7 @@ class DeliveryAreaController extends Controller
     {
         try {
             $deliveryArea->delete();
+
             return response()->noContent();
         } catch (\Exception $e) {
             return $this->apiExceptionResponse($e);

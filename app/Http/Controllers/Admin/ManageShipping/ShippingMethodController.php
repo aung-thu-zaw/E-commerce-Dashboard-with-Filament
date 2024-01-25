@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ManageShipping\ShippingMethodRequest;
 use App\Models\ShippingMethod;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
 
 class ShippingMethodController extends Controller
@@ -16,7 +14,7 @@ class ShippingMethodController extends Controller
     {
         $this->middleware('permission:shipping-methods.view', ['only' => ['index']]);
         $this->middleware('permission:shipping-methods.create', ['only' => ['store']]);
-        $this->middleware('permission:shipping-methods.edit', ['only' => ['show','update']]);
+        $this->middleware('permission:shipping-methods.edit', ['only' => ['show', 'update']]);
         $this->middleware('permission:shipping-methods.delete', ['only' => ['destroy']]);
     }
 
@@ -24,9 +22,9 @@ class ShippingMethodController extends Controller
     {
         try {
             $shippingMethods = ShippingMethod::search(request('search'))
-            ->orderBy(request('sort', 'id'), request('direction', 'desc'))
-            ->paginate(request('per_page', 5))
-            ->appends(request()->all());
+                ->orderBy(request('sort', 'id'), request('direction', 'desc'))
+                ->paginate(request('per_page', 5))
+                ->appends(request()->all());
 
             return response()->json($shippingMethods, 200);
         } catch (\Exception $e) {
@@ -38,6 +36,7 @@ class ShippingMethodController extends Controller
     {
         try {
             $shippingMethod = ShippingMethod::create($request->validated());
+
             return response()->json($shippingMethod, 201);
         } catch (\Exception $e) {
             return $this->apiExceptionResponse($e);
@@ -57,6 +56,7 @@ class ShippingMethodController extends Controller
     {
         try {
             $shippingMethod->update($request->validated());
+
             return response()->json($shippingMethod, 200);
         } catch (\Exception $e) {
             return $this->apiExceptionResponse($e);
@@ -67,6 +67,7 @@ class ShippingMethodController extends Controller
     {
         try {
             $shippingMethod->delete();
+
             return response()->noContent();
         } catch (\Exception $e) {
             return $this->apiExceptionResponse($e);

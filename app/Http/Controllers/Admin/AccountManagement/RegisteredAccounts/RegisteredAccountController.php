@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
 
 class RegisteredAccountController extends Controller
@@ -22,12 +20,12 @@ class RegisteredAccountController extends Controller
     {
         try {
             $registeredAccounts = User::search(request('search'))
-            ->query(function (Builder $builder) {
-                $builder->filterBy(request(['status','role']));
-            })
-            ->orderBy(request('sort', 'id'), request('direction', 'desc'))
-            ->paginate(request('per_page', 5))
-            ->appends(request()->all());
+                ->query(function (Builder $builder) {
+                    $builder->filterBy(request(['status', 'role']));
+                })
+                ->orderBy(request('sort', 'id'), request('direction', 'desc'))
+                ->paginate(request('per_page', 5))
+                ->appends(request()->all());
 
             return response()->json($registeredAccounts, 200);
         } catch (\Exception $e) {
@@ -40,6 +38,7 @@ class RegisteredAccountController extends Controller
         try {
             User::deleteAvatar($user->avatar);
             $user->delete();
+
             return response()->noContent();
         } catch (\Exception $e) {
             return $this->apiExceptionResponse($e);

@@ -58,5 +58,4 @@ class Category extends Model
             $query->where('status', filter_var($filterBy['status'], FILTER_VALIDATE_BOOLEAN));
         });
     }
-
 }

@@ -22,8 +22,8 @@ class NewsletterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "subject" => ["required","string","max:255"],
-            "content" => ["required","string"]
+            'subject' => ['required', 'string', 'max:255'],
+            'content' => ['required', 'string'],
         ];
     }
 }

@@ -27,7 +27,7 @@ class BlogContentFactory extends Factory
             'title' => fake()->unique()->sentence(),
             'thumbnail' => fake()->imageUrl(),
             'content' => fake()->paragraph(12),
-            'status' => fake()->randomElement(['draft', 'published','hidden']),
+            'status' => fake()->randomElement(['draft', 'published', 'hidden']),
             'created_at' => fake()->dateTimeBetween('-4 months', now()),
         ];
     }

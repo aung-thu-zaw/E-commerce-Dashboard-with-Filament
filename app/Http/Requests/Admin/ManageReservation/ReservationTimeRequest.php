@@ -22,8 +22,8 @@ class ReservationTimeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "start_time" => ["required"],
-            "end_time" => ["required"]
+            'start_time' => ['required'],
+            'end_time' => ['required'],
         ];
     }
 }

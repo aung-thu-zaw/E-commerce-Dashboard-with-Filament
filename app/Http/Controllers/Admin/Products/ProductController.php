@@ -11,7 +11,6 @@ use App\Models\AdditionalImage;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
 
 class ProductController extends Controller
@@ -20,7 +19,7 @@ class ProductController extends Controller
     {
         $this->middleware('permission:products.view', ['only' => ['index']]);
         $this->middleware('permission:products.create', ['only' => ['store']]);
-        $this->middleware('permission:products.edit', ['only' => ['show','update']]);
+        $this->middleware('permission:products.edit', ['only' => ['show', 'update']]);
         $this->middleware('permission:products.delete', ['only' => ['destroy']]);
     }
 
@@ -30,7 +29,7 @@ class ProductController extends Controller
             $products = Product::search(request('search'))
                 ->query(function (Builder $builder) {
                     $builder->with('category:id,name')
-                    ->filterBy(request(['status','category']));
+                        ->filterBy(request(['status', 'category']));
                 })
                 ->orderBy(request('sort', 'id'), request('direction', 'desc'))
                 ->paginate(request('per_page', 5))
@@ -77,7 +76,7 @@ class ProductController extends Controller
     {
         try {
 
-            $additionalImages = AdditionalImage::where("product_id", $product->id)->get();
+            $additionalImages = AdditionalImage::where('product_id', $product->id)->get();
 
             $additionalImages->each(function ($additionalImage) {
 
@@ -90,6 +89,7 @@ class ProductController extends Controller
             Product::deleteImage($product->image);
 
             $product->delete();
+
             return response()->noContent();
         } catch (\Exception $e) {
             return $this->apiExceptionResponse($e);

@@ -7,7 +7,6 @@ use App\Actions\Admin\BlogContents\UpdateBlogContentAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ManageBlog\BlogContentRequest;
 use App\Models\BlogContent;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
@@ -41,6 +40,7 @@ class BlogContentController extends Controller
     {
         try {
             $blogContent = (new CreateBlogContentAction())->handle($request->validated());
+
             return response()->json($blogContent, 201);
         } catch (\Exception $e) {
             return $this->apiExceptionResponse($e);
@@ -51,6 +51,7 @@ class BlogContentController extends Controller
     {
         try {
             $blogContent->load(['blogTags']);
+
             return response()->json($blogContent, 200);
         } catch (\Exception $e) {
             return $this->apiExceptionResponse($e);
@@ -61,6 +62,7 @@ class BlogContentController extends Controller
     {
         try {
             $blogContent = (new UpdateBlogContentAction())->handle($request->validated(), $blogContent);
+
             return response()->json($blogContent, 200);
         } catch (\Exception $e) {
             return $this->apiExceptionResponse($e);
@@ -71,6 +73,7 @@ class BlogContentController extends Controller
     {
         try {
             $blogContent->delete();
+
             return response()->noContent();
         } catch (\Exception $e) {
             return $this->apiExceptionResponse($e);

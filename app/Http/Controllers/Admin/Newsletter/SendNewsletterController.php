@@ -14,13 +14,13 @@ class SendNewsletterController extends Controller
     public function __invoke(NewsletterRequest $request): JsonResponse
     {
         try {
-            $subscribers = Subscriber::where("status", "subscribed")->get();
+            $subscribers = Subscriber::where('status', 'subscribed')->get();
 
             $subscribers->each(function ($subscriber) use ($request) {
                 Mail::to($subscriber->email)->queue(new NewsletterMail($request->subject, $request->content));
             });
 
-            return response()->json(["message" => "Newsletter sent successfully!"], 200);
+            return response()->json(['message' => 'Newsletter sent successfully!'], 200);
         } catch (\Exception $e) {
             $this->apiExceptionResponse($e);
         }

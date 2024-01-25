@@ -23,8 +23,8 @@ class TableRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            "name" => ["required","string","max:255",Rule::unique("tables", "name")],
-            "capacity" => ["required","numeric"],
+            'name' => ['required', 'string', 'max:255', Rule::unique('tables', 'name')],
+            'capacity' => ['required', 'numeric'],
         ];
 
         $route = $this->route();

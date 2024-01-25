@@ -79,6 +79,7 @@ class CategoryController extends Controller
     {
         try {
             $category->delete();
+
             return response()->noContent();
         } catch (\Exception $e) {
             $this->apiExceptionResponse($e);

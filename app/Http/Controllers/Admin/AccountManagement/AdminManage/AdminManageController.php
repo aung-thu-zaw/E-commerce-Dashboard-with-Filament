@@ -9,7 +9,6 @@ use App\Http\Requests\Admin\AccountManagement\AdminManageRequest;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class AdminManageController extends Controller
@@ -57,6 +56,7 @@ class AdminManageController extends Controller
     {
         try {
             $admin = (new CreateAdminAction())->handle($request->validated());
+
             return response()->json($admin, 201);
         } catch (\Exception $e) {
             $this->apiExceptionResponse($e);
@@ -69,6 +69,7 @@ class AdminManageController extends Controller
             $user = User::find($userId);
 
             $user = (new UpdateAdminAction())->handle($request->validated(), $user);
+
             return response()->json($user, 200);
         } catch (\Exception $e) {
             $this->apiExceptionResponse($e);
@@ -81,6 +82,7 @@ class AdminManageController extends Controller
             $user = User::find($userId);
             User::deleteAvatar($user->avatar);
             $user->delete();
+
             return response()->noContent();
         } catch (\Exception $e) {
             $this->apiExceptionResponse($e);

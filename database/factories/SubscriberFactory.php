@@ -17,8 +17,8 @@ class SubscriberFactory extends Factory
     public function definition(): array
     {
         return [
-            "email" => fake()->unique()->email(),
-            "status" => fake()->randomElement(["subscribed","unsubscribed"])
+            'email' => fake()->unique()->email(),
+            'status' => fake()->randomElement(['subscribed', 'unsubscribed']),
         ];
     }
 }

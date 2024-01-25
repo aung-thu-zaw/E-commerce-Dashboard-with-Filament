@@ -25,7 +25,7 @@ class BlogContentRequest extends FormRequest
         $rules = [
             'blog_category_id' => ['required', 'numeric', Rule::exists('blog_categories', 'id')],
             'title' => ['required', 'string', 'max:255', Rule::unique('blog_contents', 'title')],
-            'status' => ['required', 'string', Rule::in(['draft','published','hidden'])],
+            'status' => ['required', 'string', Rule::in(['draft', 'published', 'hidden'])],
             'thumbnail' => ['required', 'image', 'mimes:png,jpg,jpeg', 'max:1500'],
             'content' => ['required', 'string'],
             'tags' => ['nullable', 'array'],
@@ -37,12 +37,12 @@ class BlogContentRequest extends FormRequest
             $blogContent = $route->parameter('blog_content');
             $rules['title'] = ['required', 'string', 'max:255', Rule::unique('blog_contents', 'title')->ignore($blogContent)];
 
-            if($this->hasFile('thumbnail')) {
+            if ($this->hasFile('thumbnail')) {
 
-                $rules["thumbnail"] = ['required', 'image', 'mimes:png,jpg,jpeg', 'max:1500'];
+                $rules['thumbnail'] = ['required', 'image', 'mimes:png,jpg,jpeg', 'max:1500'];
             } else {
 
-                $rules["thumbnail"] = ['nullable'];
+                $rules['thumbnail'] = ['nullable'];
             }
         }
 

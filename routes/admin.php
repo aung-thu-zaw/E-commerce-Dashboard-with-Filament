@@ -59,7 +59,7 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])
 
         Route::apiResource('tables', TableController::class);
 
-        Route::apiResource('reservation-times', ReservationTimeController::class)->except(["show","update"]);
+        Route::apiResource('reservation-times', ReservationTimeController::class)->except(['show', 'update']);
 
         Route::apiResource('blog-categories', BlogCategoryController::class);
 
@@ -73,8 +73,8 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])
 
         Route::post('/send-newsletter', SendNewsletterController::class);
 
-        Route::get('/registered-accounts', [RegisteredAccountController::class,"index"]);
-        Route::delete('/registered-accounts/{user}', [RegisteredAccountController::class,"destroy"]);
+        Route::get('/registered-accounts', [RegisteredAccountController::class, 'index']);
+        Route::delete('/registered-accounts/{user}', [RegisteredAccountController::class, 'destroy']);
         Route::put('/registered-accounts/{user}/change-status', ChangeRegisteredAccountStatusController::class)->middleware(['permission:registered-accounts.edit']);
 
         Route::apiResource('admin-accounts', AdminManageController::class);

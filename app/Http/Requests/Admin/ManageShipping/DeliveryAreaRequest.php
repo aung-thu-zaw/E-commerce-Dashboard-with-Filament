@@ -23,7 +23,7 @@ class DeliveryAreaRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            "name" => ["required","string","max:255",Rule::unique("delivery_areas", "name")]
+            'name' => ['required', 'string', 'max:255', Rule::unique('delivery_areas', 'name')],
         ];
 
         $route = $this->route();

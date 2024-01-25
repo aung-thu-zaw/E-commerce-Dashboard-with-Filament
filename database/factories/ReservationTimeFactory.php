@@ -17,8 +17,8 @@ class ReservationTimeFactory extends Factory
     public function definition(): array
     {
         return [
-            "start_time"=>fake()->dateTimeBetween(),
-            "end_time"=>fake()->dateTimeBetween(),
+            'start_time' => fake()->dateTimeBetween(),
+            'end_time' => fake()->dateTimeBetween(),
         ];
     }
 }

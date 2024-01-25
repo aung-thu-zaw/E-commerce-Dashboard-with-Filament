@@ -23,8 +23,8 @@ class ShippingMethodRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            "name" => ["required","string","max:255",Rule::unique("shipping_methods", "name")],
-            "cost" => ["required","numeric"]
+            'name' => ['required', 'string', 'max:255', Rule::unique('shipping_methods', 'name')],
+            'cost' => ['required', 'numeric'],
         ];
 
         $route = $this->route();

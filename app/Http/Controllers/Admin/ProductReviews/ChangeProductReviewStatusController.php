@@ -13,9 +13,9 @@ class ChangeProductReviewStatusController extends Controller
     public function __invoke(Request $request, ProductReview $productReview): JsonResponse
     {
         try {
-            $request->validate(['status' => ['required', Rule::in(['published','hidden'])]]);
+            $request->validate(['status' => ['required', Rule::in(['published', 'hidden'])]]);
 
-            $productReview->load(['product:id,name,image','reviewer:id,name,avatar']);
+            $productReview->load(['product:id,name,image', 'reviewer:id,name,avatar']);
 
             $productReview->update(['status' => $request->status]);
 

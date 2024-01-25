@@ -32,9 +32,9 @@ class BlogComment extends Model
         return $query->whereHas('user', function ($subquery) use ($searchTerm) {
             $subquery->where('name', 'like', "%{$searchTerm}%");
         })
-        ->orWhereHas('blogContent', function ($subquery) use ($searchTerm) {
-            $subquery->where('title', 'like', "%{$searchTerm}%");
-        });
+            ->orWhereHas('blogContent', function ($subquery) use ($searchTerm) {
+                $subquery->where('title', 'like', "%{$searchTerm}%");
+            });
     }
 
     public function scopeFilterBy(Builder $query, ?array $filterBy): Builder

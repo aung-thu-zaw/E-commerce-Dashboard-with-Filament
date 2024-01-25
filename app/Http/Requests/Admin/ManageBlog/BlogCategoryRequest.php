@@ -23,7 +23,7 @@ class BlogCategoryRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            "name" => ["required","string","max:255",Rule::unique("blog_categories", "name")]
+            'name' => ['required', 'string', 'max:255', Rule::unique('blog_categories', 'name')],
         ];
 
         $route = $this->route();

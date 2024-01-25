@@ -46,7 +46,7 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     /**
-     *     @return array<string>
+     * @return array<string>
      */
     public function toSearchableArray(): array
     {

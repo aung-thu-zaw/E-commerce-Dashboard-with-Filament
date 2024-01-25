@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class () extends Migration {
+return new class() extends Migration
+{
     /**
      * Run the migrations.
      */
@@ -18,7 +19,7 @@ return new class () extends Migration {
             $table->string('slug')->unique();
             $table->string('thumbnail');
             $table->text('content');
-            $table->enum('status', ['draft', 'published','hidden'])->default('draft');
+            $table->enum('status', ['draft', 'published', 'hidden'])->default('draft');
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });

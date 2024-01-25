@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CouponRequest;
 use App\Models\Coupon;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
 
 class CouponController extends Controller
@@ -16,7 +14,7 @@ class CouponController extends Controller
     {
         $this->middleware('permission:coupons.view', ['only' => ['index']]);
         $this->middleware('permission:coupons.create', ['only' => ['store']]);
-        $this->middleware('permission:coupons.edit', ['only' => ['show','update']]);
+        $this->middleware('permission:coupons.edit', ['only' => ['show', 'update']]);
         $this->middleware('permission:coupons.delete', ['only' => ['destroy']]);
     }
 
@@ -24,9 +22,9 @@ class CouponController extends Controller
     {
         try {
             $coupons = Coupon::search(request('search'))
-            ->orderBy(request('sort', 'id'), request('direction', 'desc'))
-            ->paginate(request('per_page', 5))
-            ->appends(request()->all());
+                ->orderBy(request('sort', 'id'), request('direction', 'desc'))
+                ->paginate(request('per_page', 5))
+                ->appends(request()->all());
 
             return response()->json($coupons, 200);
         } catch (\Exception $e) {
@@ -38,6 +36,7 @@ class CouponController extends Controller
     {
         try {
             $coupon = Coupon::create($request->validated());
+
             return response()->json($coupon, 201);
         } catch (\Exception $e) {
             return $this->apiExceptionResponse($e);
@@ -57,6 +56,7 @@ class CouponController extends Controller
     {
         try {
             $coupon->update($request->validated());
+
             return response()->json($coupon, 200);
         } catch (\Exception $e) {
             return $this->apiExceptionResponse($e);
@@ -67,6 +67,7 @@ class CouponController extends Controller
     {
         try {
             $coupon->delete();
+
             return response()->noContent();
         } catch (\Exception $e) {
             return $this->apiExceptionResponse($e);

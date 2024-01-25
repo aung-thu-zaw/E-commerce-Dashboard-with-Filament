@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ManageReservation\TableRequest;
 use App\Models\Table;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
 
 class TableController extends Controller
@@ -24,9 +22,9 @@ class TableController extends Controller
     {
         try {
             $tables = Table::search(request('search'))
-            ->orderBy(request('sort', 'id'), request('direction', 'desc'))
-            ->paginate(request('per_page', 5))
-            ->appends(request()->all());
+                ->orderBy(request('sort', 'id'), request('direction', 'desc'))
+                ->paginate(request('per_page', 5))
+                ->appends(request()->all());
 
             return response()->json($tables, 200);
         } catch (\Exception $e) {
@@ -38,6 +36,7 @@ class TableController extends Controller
     {
         try {
             $table = Table::create($request->validated());
+
             return response()->json($table, 201);
         } catch (\Exception $e) {
             return $this->apiExceptionResponse($e);
@@ -57,6 +56,7 @@ class TableController extends Controller
     {
         try {
             $table->update($request->validated());
+
             return response()->json($table, 200);
         } catch (\Exception $e) {
             return $this->apiExceptionResponse($e);
@@ -67,6 +67,7 @@ class TableController extends Controller
     {
         try {
             $table->delete();
+
             return response()->noContent();
         } catch (\Exception $e) {
             return $this->apiExceptionResponse($e);

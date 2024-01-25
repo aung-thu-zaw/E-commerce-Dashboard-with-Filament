@@ -17,8 +17,8 @@ class TableFactory extends Factory
     public function definition(): array
     {
         return [
-            "name" => fake()->unique()->sentence(),
-            "capacity" => fake()->numberBetween(2, 20)
+            'name' => fake()->unique()->sentence(),
+            'capacity' => fake()->numberBetween(2, 20),
         ];
     }
 }

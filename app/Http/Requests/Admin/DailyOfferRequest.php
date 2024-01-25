@@ -23,10 +23,10 @@ class DailyOfferRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "product_id" => ["required","numeric",Rule::exists("products", "id")],
-            "start_date" => ["required","date"],
-            "end_date" => ["required","date"],
-            "discount_percentage" => ["required","numeric","min:1","max:100"],
+            'product_id' => ['required', 'numeric', Rule::exists('products', 'id')],
+            'start_date' => ['required', 'date'],
+            'end_date' => ['required', 'date'],
+            'discount_percentage' => ['required', 'numeric', 'min:1', 'max:100'],
         ];
     }
 }
