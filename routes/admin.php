@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\ManageReservation\ReservationTimeController;
 use App\Http\Controllers\Admin\ManageReservation\TableController;
 use App\Http\Controllers\Admin\ManageShipping\DeliveryAreaController;
 use App\Http\Controllers\Admin\ManageShipping\ShippingMethodController;
+use App\Http\Controllers\Admin\Newsletter\SendNewsletterController;
 use App\Http\Controllers\Admin\Newsletter\SubscriberController;
 use App\Http\Controllers\Admin\ProductReviews\ChangeProductReviewStatusController;
 use App\Http\Controllers\Admin\ProductReviews\ProductReviewController;
@@ -64,6 +65,8 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])
         Route::apiResource('blog-comments', BlogCommentController::class)->only(['index', 'destroy']);
 
         Route::apiResource('subscribers', SubscriberController::class)->only(['index', 'destroy']);
+
+        Route::post('/send-newsletter', SendNewsletterController::class);
 
         Route::get('/permissions', [PermissionController::class, 'index']);
 

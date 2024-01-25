@@ -13,11 +13,11 @@ class ReservationTimeSeeder extends Seeder
      */
     public function run(): void
     {
-        ReservationTime::create(["start_time" => "17:00", "end_time" => "18:00"]);
-        ReservationTime::create(["start_time" => "18:00", "end_time" => "19:00"]);
-        ReservationTime::create(["start_time" => "19:00", "end_time" => "20:00"]);
-        ReservationTime::create(["start_time" => "20:00", "end_time" => "21:00"]);
-        ReservationTime::create(["start_time" => "21:00", "end_time" => "22:00"]);
-        ReservationTime::create(["start_time" => "22:00", "end_time" => "23:00"]);
+        ReservationTime::create(["start_time" => "17:00:00", "end_time" => "18:00:00"]);
+        ReservationTime::create(["start_time" => "18:00:00", "end_time" => "19:00:00"]);
+        ReservationTime::create(["start_time" => "19:00:00", "end_time" => "20:00:00"]);
+        ReservationTime::create(["start_time" => "20:00:00", "end_time" => "21:00:00"]);
+        ReservationTime::create(["start_time" => "21:00:00", "end_time" => "22:00:00"]);
+        ReservationTime::create(["start_time" => "22:00:00", "end_time" => "23:00:00"]);
     }
 }
