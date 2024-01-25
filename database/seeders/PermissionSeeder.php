@@ -52,6 +52,10 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'tables.edit', 'group' => 'Manage Reservation']);
         Permission::create(['name' => 'tables.delete', 'group' => 'Manage Reservation']);
 
+        Permission::create(['name' => 'reservation-times.view', 'group' => 'Manage Reservation']);
+        Permission::create(['name' => 'reservation-times.create', 'group' => 'Manage Reservation']);
+        Permission::create(['name' => 'reservation-times.delete', 'group' => 'Manage Reservation']);
+
         Permission::create(['name' => 'blog-categories.view', 'group' => 'Manage Blog']);
         Permission::create(['name' => 'blog-categories.create', 'group' => 'Manage Blog']);
         Permission::create(['name' => 'blog-categories.edit', 'group' => 'Manage Blog']);

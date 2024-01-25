@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\ManageBlog\BlogCommentController;
 use App\Http\Controllers\Admin\ManageBlog\BlogContents\BlogContentController;
 use App\Http\Controllers\Admin\ManageBlog\BlogContents\ChangeBlogContentStatusController;
 use App\Http\Controllers\Admin\ManageBlog\BlogContents\GetResourcesForBlogContentFormController;
+use App\Http\Controllers\Admin\ManageReservation\ReservationTimeController;
 use App\Http\Controllers\Admin\ManageReservation\TableController;
 use App\Http\Controllers\Admin\ManageShipping\DeliveryAreaController;
 use App\Http\Controllers\Admin\ManageShipping\ShippingMethodController;
@@ -51,6 +52,8 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])
         Route::apiResource('shipping-methods', ShippingMethodController::class);
 
         Route::apiResource('tables', TableController::class);
+
+        Route::apiResource('reservation-times', ReservationTimeController::class)->except(["show","update"]);
 
         Route::apiResource('blog-categories', BlogCategoryController::class);
 
