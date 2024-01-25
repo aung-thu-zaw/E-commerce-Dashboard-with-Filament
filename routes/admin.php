@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\Coupons\ChangeCouponStatusController;
 use App\Http\Controllers\Admin\Coupons\CouponController;
 use App\Http\Controllers\Admin\DailyOffers\DailyOfferController;
 use App\Http\Controllers\Admin\DailyOffers\GetResourcesForDailyOfferFormController;
+use App\Http\Controllers\Admin\DatabaseBackupController;
 use App\Http\Controllers\Admin\ManageBlog\BlogCategoryController;
 use App\Http\Controllers\Admin\ManageBlog\BlogCommentController;
 use App\Http\Controllers\Admin\ManageBlog\BlogContents\BlogContentController;
@@ -92,4 +93,15 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])
         Route::patch('/assign-role-permissions/{role}', [AssignRolePermissionController::class, 'update']);
 
         Route::get('/resources/for-assign-role-permissions', GetResourcesForAssignRolePermissionFormController::class)->middleware([ 'permission:assign-role-permissions.edit']);
+
+
+        Route::controller(DatabaseBackupController::class)
+        ->prefix('/database-backups')
+        ->name('database-backups.')
+        ->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::post('/', 'backup')->name('backup');
+            Route::delete('/{file}', 'destroy')->name('destroy');
+            Route::get('/{file}/download', 'download')->name('download');
+        });
     });

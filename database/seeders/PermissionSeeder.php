@@ -93,5 +93,10 @@ class PermissionSeeder extends Seeder
 
         Permission::create(['name' => 'assign-role-permissions.view', 'group' => 'Authority Management']);
         Permission::create(['name' => 'assign-role-permissions.edit', 'group' => 'Authority Management']);
+
+        Permission::create(['name' => 'database-backups.view', 'group' => 'Database Backup']);
+        Permission::create(['name' => 'database-backups.download', 'group' => 'Database Backup']);
+        Permission::create(['name' => 'database-backups.create', 'group' => 'Database Backup']);
+        Permission::create(['name' => 'database-backups.delete', 'group' => 'Database Backup']);
     }
 }
