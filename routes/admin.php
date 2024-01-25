@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\AccountManagement\AdminManage\ChangeAdminAccountS
 use App\Http\Controllers\Admin\AccountManagement\AdminManage\GetResourcesForAdminMangeFormController;
 use App\Http\Controllers\Admin\AccountManagement\RegisteredAccounts\ChangeRegisteredAccountStatusController;
 use App\Http\Controllers\Admin\AccountManagement\RegisteredAccounts\RegisteredAccountController;
+use App\Http\Controllers\Admin\AuthorityManagement\AssignRolePermissions\AssignRolePermissionController;
+use App\Http\Controllers\Admin\AuthorityManagement\AssignRolePermissions\GetResourcesForAssignRolePermissionFormController;
 use App\Http\Controllers\Admin\AuthorityManagement\PermissionController;
 use App\Http\Controllers\Admin\AuthorityManagement\RoleController;
 use App\Http\Controllers\Admin\Categories\CategoryController;
@@ -84,4 +86,10 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])
         Route::get('/permissions', [PermissionController::class, 'index']);
 
         Route::apiResource('roles', RoleController::class);
+
+        Route::get('/assign-role-permissions', [AssignRolePermissionController::class, 'index']);
+        Route::get('/assign-role-permissions/{role}', [AssignRolePermissionController::class, 'show']);
+        Route::patch('/assign-role-permissions/{role}', [AssignRolePermissionController::class, 'update']);
+
+        Route::get('/resources/for-assign-role-permissions', GetResourcesForAssignRolePermissionFormController::class)->middleware([ 'permission:assign-role-permissions.edit']);
     });
