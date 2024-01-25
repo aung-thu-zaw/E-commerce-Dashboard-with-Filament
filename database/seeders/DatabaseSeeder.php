@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\ReservationTime;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -27,11 +28,14 @@ class DatabaseSeeder extends Seeder
             CouponSeeder::class,
             DeliveryAreaSeeder::class,
             ShippingMethodSeeder::class,
+            TableSeeder::class,
+            ReservationTimeSeeder::class,
+            ReservationSeeder::class,
             BlogCategorySeeder::class,
             BlogContentSeeder::class,
             BlogCommentSeeder::class,
             BlogCommentResponseSeeder::class,
-            SubscriberSeeder::class
+            SubscriberSeeder::class,
         ]);
     }
 }
