@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
             DeliveryAreaSeeder::class,
             ShippingMethodSeeder::class,
             TableSeeder::class,
-            ReservationTimeSeeder::class,
+            // ReservationTimeSeeder::class,
             ReservationSeeder::class,
             BlogCategorySeeder::class,
             BlogContentSeeder::class,
