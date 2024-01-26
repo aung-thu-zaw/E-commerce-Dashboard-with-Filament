@@ -20,11 +20,11 @@ return new class () extends Migration {
             $table->string("address");
             $table->string("experience");
             $table->decimal("salary", 8, 2)->default(0.00);
-            $table->string("vacation");
-            $table->boolean("is_active");
+            $table->enum("vacation", ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"])->nullable();
+            $table->enum("status", ["active","inactive"])->default("active");
             $table->date("date_of_birth");
             $table->date("joining_date");
-            $table->date("termination_date");
+            $table->date("termination_date")->nullable();
             $table->timestamps();
         });
     }

@@ -35,6 +35,8 @@ class DatabaseSeeder extends Seeder
             BlogCommentSeeder::class,
             BlogCommentResponseSeeder::class,
             SubscriberSeeder::class,
+            EmployeePositionSeeder::class,
+            EmployeeSeeder::class,
         ]);
     }
 }

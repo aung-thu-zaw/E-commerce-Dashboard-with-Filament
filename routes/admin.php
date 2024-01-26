@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\Coupons\GetResourcesForCouponFormController;
 use App\Http\Controllers\Admin\DailyOffers\DailyOfferController;
 use App\Http\Controllers\Admin\DailyOffers\GetResourcesForDailyOfferFormController;
 use App\Http\Controllers\Admin\DatabaseBackupController;
+use App\Http\Controllers\Admin\EmployeeManagement\EmployeePositionController;
 use App\Http\Controllers\Admin\ManageBlog\BlogCategoryController;
 use App\Http\Controllers\Admin\ManageBlog\BlogCommentController;
 use App\Http\Controllers\Admin\ManageBlog\BlogContents\BlogContentController;
@@ -34,6 +35,7 @@ use App\Http\Controllers\Admin\Products\ChangeProductStatusController;
 use App\Http\Controllers\Admin\Products\DeleteProductAdditionalImageController;
 use App\Http\Controllers\Admin\Products\GetResourcesForProductFormController;
 use App\Http\Controllers\Admin\Products\ProductController;
+use Database\Seeders\EmployeePositionSeeder;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth:sanctum', 'verified', 'admin'])
@@ -77,6 +79,8 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])
         Route::apiResource('subscribers', SubscriberController::class)->only(['index', 'destroy']);
 
         Route::post('/send-newsletter', SendNewsletterController::class)->middleware(['permission:newsletter.send']);
+
+        Route::apiResource('employee-positions', EmployeePositionController::class);
 
         Route::get('/registered-accounts', [RegisteredAccountController::class, 'index']);
         Route::delete('/registered-accounts/{user}', [RegisteredAccountController::class, 'destroy']);
