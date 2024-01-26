@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -17,16 +18,19 @@ class CouponFactory extends Factory
      */
     public function definition(): array
     {
+        $products = Product::pluck("id")->toArray();
+
         return [
             'code' => strtoupper(Str::random(8)),
             'description' => fake()->sentence,
-            'type' => fake()->randomElement(['percentage', 'fixed', 'buy_one_get_one', 'free_item', 'special_event', 'online_ordering', 'birthday', 'referral', 'early_bird']),
+            'type' => fake()->randomElement(['percentage','fixed','free_item']),
             'discount_amount' => fake()->randomFloat(2, 5, 50),
             'minimum_order_amount' => fake()->numberBetween(20, 100),
-            'free_item_quantity' => fake()->numberBetween(1, 5),
+            'free_item_id' => fake()->randomElement($products),
             'validity_period' => fake()->randomElement(['once', 'multiple', 'forever']),
             'start_date' => fake()->dateTimeBetween('-1 month', '+1 month')->format('Y-m-d'),
             'end_date' => fake()->dateTimeBetween('+2 months', '+3 months')->format('Y-m-d'),
+            'usage_limit' => fake()->numberBetween(10, 100),
             'status' => fake()->randomElement(['active', 'inactive']),
         ];
     }

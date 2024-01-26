@@ -75,6 +75,8 @@ class PermissionSeeder extends Seeder
 
         Permission::create(['name' => 'newsletter.send', 'group' => 'Newsletter']);
 
+        Permission::create(['name' => 'chat-box.message', 'group' => 'Chat Box']);
+
         Permission::create(['name' => 'registered-accounts.view', 'group' => 'Account Management']);
         Permission::create(['name' => 'registered-accounts.edit', 'group' => 'Account Management']);
         Permission::create(['name' => 'registered-accounts.delete', 'group' => 'Account Management']);

@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\Categories\CategoryController;
 use App\Http\Controllers\Admin\Categories\ChangeCategoryStatusController;
 use App\Http\Controllers\Admin\Coupons\ChangeCouponStatusController;
 use App\Http\Controllers\Admin\Coupons\CouponController;
+use App\Http\Controllers\Admin\Coupons\GetResourcesForCouponFormController;
 use App\Http\Controllers\Admin\DailyOffers\DailyOfferController;
 use App\Http\Controllers\Admin\DailyOffers\GetResourcesForDailyOfferFormController;
 use App\Http\Controllers\Admin\DatabaseBackupController;
@@ -55,6 +56,7 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])
 
         Route::apiResource('coupons', CouponController::class);
         Route::put('/coupons/{coupon}/change-status', ChangeCouponStatusController::class)->middleware(['permission:coupons.edit']);
+        Route::get('/resources/for-coupon', GetResourcesForCouponFormController::class)->middleware(['permission:coupons.create', 'permission:coupons.edit']);
 
         Route::apiResource('delivery-areas', DeliveryAreaController::class);
 
@@ -74,7 +76,7 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])
 
         Route::apiResource('subscribers', SubscriberController::class)->only(['index', 'destroy']);
 
-        Route::post('/send-newsletter', SendNewsletterController::class);
+        Route::post('/send-newsletter', SendNewsletterController::class)->middleware(['permission:newsletter.send']);
 
         Route::get('/registered-accounts', [RegisteredAccountController::class, 'index']);
         Route::delete('/registered-accounts/{user}', [RegisteredAccountController::class, 'destroy']);

@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             ProductReviewSeeder::class,
             ProductReviewResponseSeeder::class,
             DailyOfferSeeder::class,
-            CouponSeeder::class,
+            // CouponSeeder::class,
             DeliveryAreaSeeder::class,
             ShippingMethodSeeder::class,
             TableSeeder::class,

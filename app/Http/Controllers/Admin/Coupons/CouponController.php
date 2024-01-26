@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Coupons;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CouponRequest;
 use App\Models\Coupon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
@@ -22,6 +23,10 @@ class CouponController extends Controller
     {
         try {
             $coupons = Coupon::search(request('search'))
+            ->query(function (Builder $builder) {
+                $builder->with('product:id,name')
+                    ->filterBy(request(['status', 'type']));
+            })
                 ->orderBy(request('sort', 'id'), request('direction', 'desc'))
                 ->paginate(request('per_page', 5))
                 ->appends(request()->all());

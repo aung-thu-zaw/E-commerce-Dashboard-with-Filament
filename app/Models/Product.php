@@ -68,6 +68,11 @@ class Product extends Model
         return $this->hasOne(DailyOffer::class);
     }
 
+    public function coupons(): HasMany
+    {
+        return $this->hasMany(Coupon::class, 'free_item_id');
+    }
+
     public static function deleteImage(string $productImage): void
     {
         if (! empty($productImage) && file_exists(storage_path('app/public/products/'.pathinfo($productImage, PATHINFO_BASENAME)))) {

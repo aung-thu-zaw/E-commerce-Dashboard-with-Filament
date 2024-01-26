@@ -24,12 +24,12 @@ class CouponRequest extends FormRequest
     {
         return [
             'code' => ['required', 'max:100'],
-            'description' => ['required', 'string'],
-            'type' => ['required', 'string', Rule::in(['percentage', 'fixed', 'buy_one_get_one', 'free_item', 'loyalty', 'special_event', 'online_ordering', 'birthday', 'referral', 'early_bird'])],
+            'description' => ['required', 'string','max:255'],
+            'type' => ['required', 'string', Rule::in(['percentage','fixed','free_item'])],
             'discount_amount' => ['nullable', 'numeric'],
             'minimum_order_amount' => ['nullable', 'numeric'],
-            'free_item_quantity' => ['nullable', 'numeric'],
-            'loyalty_stamps_required' => ['nullable', 'numeric'],
+            'usage_limit' => ['nullable', 'numeric'],
+            'free_item_id' => ['nullable', 'numeric',Rule::exists("products", "id")],
             'validity_period' => ['required', 'string', Rule::in(['once', 'multiple', 'forever'])],
             'start_date' => ['nullable', 'date'],
             'end_date' => ['nullable', 'date'],
