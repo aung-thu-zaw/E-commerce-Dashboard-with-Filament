@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Scout\Searchable;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
@@ -34,5 +35,10 @@ class EmployeePosition extends Model
         return [
             'name' => $this->name,
         ];
+    }
+
+    public function employees():HasMany
+    {
+        return $this->hasMany(Employee::class);
     }
 }

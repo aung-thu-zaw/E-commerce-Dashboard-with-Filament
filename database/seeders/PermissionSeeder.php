@@ -82,6 +82,11 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'employee-positions.edit', 'group' => 'Employee Management']);
         Permission::create(['name' => 'employee-positions.delete', 'group' => 'Employee Management']);
 
+        Permission::create(['name' => 'employees.view', 'group' => 'Employee Management']);
+        Permission::create(['name' => 'employees.create', 'group' => 'Employee Management']);
+        Permission::create(['name' => 'employees.edit', 'group' => 'Employee Management']);
+        Permission::create(['name' => 'employees.delete', 'group' => 'Employee Management']);
+
         Permission::create(['name' => 'registered-accounts.view', 'group' => 'Account Management']);
         Permission::create(['name' => 'registered-accounts.edit', 'group' => 'Account Management']);
         Permission::create(['name' => 'registered-accounts.delete', 'group' => 'Account Management']);

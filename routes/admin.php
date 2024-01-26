@@ -17,7 +17,10 @@ use App\Http\Controllers\Admin\Coupons\GetResourcesForCouponFormController;
 use App\Http\Controllers\Admin\DailyOffers\DailyOfferController;
 use App\Http\Controllers\Admin\DailyOffers\GetResourcesForDailyOfferFormController;
 use App\Http\Controllers\Admin\DatabaseBackupController;
+use App\Http\Controllers\Admin\EmployeeManagement\Employees\EmployeeController;
 use App\Http\Controllers\Admin\EmployeeManagement\EmployeePositionController;
+use App\Http\Controllers\Admin\EmployeeManagement\Employees\ChangeEmployeeStatusController;
+use App\Http\Controllers\Admin\EmployeeManagement\Employees\GetResourcesForEmployeeFormController;
 use App\Http\Controllers\Admin\ManageBlog\BlogCategoryController;
 use App\Http\Controllers\Admin\ManageBlog\BlogCommentController;
 use App\Http\Controllers\Admin\ManageBlog\BlogContents\BlogContentController;
@@ -81,6 +84,14 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])
         Route::post('/send-newsletter', SendNewsletterController::class)->middleware(['permission:newsletter.send']);
 
         Route::apiResource('employee-positions', EmployeePositionController::class);
+
+        Route::apiResource('employees', EmployeeController::class);
+        Route::put('/employees/{employee}/change-status', ChangeEmployeeStatusController::class)->middleware(['permission:employees.edit']);
+        Route::get('/resources/for-employee', GetResourcesForEmployeeFormController::class)->middleware(['permission:employees.create', 'permission:employees.edit']);
+
+
+
+
 
         Route::get('/registered-accounts', [RegisteredAccountController::class, 'index']);
         Route::delete('/registered-accounts/{user}', [RegisteredAccountController::class, 'destroy']);
