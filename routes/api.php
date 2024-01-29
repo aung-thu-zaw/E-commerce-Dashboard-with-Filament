@@ -5,6 +5,7 @@ use App\Http\Controllers\Restaurant\Blogs\BlogCommentController;
 use App\Http\Controllers\Restaurant\Blogs\BlogCommentReplyController;
 use App\Http\Controllers\Restaurant\Blogs\BlogController;
 use App\Http\Controllers\Restaurant\Blogs\GetResourcesForBlogPageController;
+use App\Http\Controllers\Restaurant\SendContactEmailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,5 +31,7 @@ Route::get('/blogs/{blog_content}', [BlogController::class,"show"]);
 Route::get('/resources/for-blog-page', GetResourcesForBlogPageController::class);
 Route::post('/blogs/{blog_content}/comments', BlogCommentController::class);
 Route::post('/blogs/{blog_content}/comments/{blog_comment}/replies', BlogCommentReplyController::class);
+
+Route::post('/contact/send-email', SendContactEmailController::class);
 
 require __DIR__.'/admin.php';

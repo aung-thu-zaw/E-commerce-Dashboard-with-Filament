@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return ['Laravel' => app()->version()];
+    return view('mails.contact-us');
 });
 
 require __DIR__.'/auth.php';
