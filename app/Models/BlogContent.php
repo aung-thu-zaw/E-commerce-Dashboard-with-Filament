@@ -75,6 +75,24 @@ class BlogContent extends Model
                 $query->whereHas('blogCategory', function ($query) use ($filterBy) {
                     $query->where('slug', $filterBy['category']);
                 });
+            })
+            ->when(isset($filterBy['tag']) && $filterBy['tag'] !== '', function ($query) use ($filterBy) {
+                $query->whereHas('blogTags', function ($query) use ($filterBy) {
+                    $query->where('blog_tags.name', $filterBy['tag']);
+                });
             });
+
+    }
+
+    public function scopeSortBy(Builder $query, ?string $sortType)
+    {
+        switch ($sortType) {
+            case 'latest':
+                return $query->latest();
+            case 'earliest':
+                return $query->orderBy('id', 'asc');
+            default:
+                return $query->orderBy('id', 'desc');
+        }
     }
 }

@@ -19,7 +19,7 @@ class BlogCategoryController extends Controller
         $this->middleware('permission:blog-categories.delete', ['only' => ['destroy']]);
     }
 
-    public function index(): JsonResponse|AnonymousResourceCollection
+    public function index(): JsonResponse
     {
         try {
             $blogCategories = BlogCategory::search(request('search'))

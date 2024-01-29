@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\BlogCategory;
+use App\Models\BlogContent;
+use App\Models\BlogTag;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -30,5 +32,13 @@ class BlogContentFactory extends Factory
             'status' => fake()->randomElement(['draft', 'published', 'hidden']),
             'created_at' => fake()->dateTimeBetween('-4 months', now()),
         ];
+    }
+
+    public function configure()
+    {
+        return $this->afterCreating(function (BlogContent $blogContent) {
+            $tags = BlogTag::inRandomOrder()->limit(rand(1, 3))->get();
+            $blogContent->blogTags()->attach($tags);
+        });
     }
 }

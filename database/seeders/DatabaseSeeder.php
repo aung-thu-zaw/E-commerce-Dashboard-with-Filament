@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             TableSeeder::class,
             // ReservationTimeSeeder::class,
             ReservationSeeder::class,
+            BlogTagSeeder::class,
             BlogCategorySeeder::class,
             BlogContentSeeder::class,
             BlogCommentSeeder::class,
