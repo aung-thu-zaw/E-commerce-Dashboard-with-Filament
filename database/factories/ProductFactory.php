@@ -28,6 +28,7 @@ class ProductFactory extends Factory
             'qty' => fake()->numberBetween(1, 20),
             'is_available' => fake()->boolean(),
             'base_price' => fake()->numberBetween(10, 1000),
+            'discount_price' => fake()->numberBetween(5, 200),
             'status' => fake()->randomElement(['draft', 'published', 'hidden']),
         ];
     }

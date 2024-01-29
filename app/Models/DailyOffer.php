@@ -21,4 +21,15 @@ class DailyOffer extends Model
             $subquery->where('name', 'like', "%{$searchTerm}%");
         });
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saved(function ($dailyOffer) {
+            $discountedPrice = $dailyOffer->product->base_price * (1 - $dailyOffer->discount_percentage / 100);
+
+            $dailyOffer->product->update(['discount_price' => $discountedPrice]);
+        });
+    }
 }

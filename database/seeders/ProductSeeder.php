@@ -631,6 +631,7 @@ class ProductSeeder extends Seeder
             'image' => 'espresso-martini.jpeg',
             'name' => 'Espresso Martini',
             'ingredients' => 'Espresso, vodka, coffee liqueur, simple syrup, ice',
+            'discount_price' => null
         ]);
     }
 }

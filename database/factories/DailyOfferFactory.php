@@ -17,11 +17,12 @@ class DailyOfferFactory extends Factory
      */
     public function definition(): array
     {
-        $products = Product::pluck('id')->toArray();
+        $products = Product::where("status", "published")->pluck('id')->toArray();
 
         return [
             'product_id' => fake()->randomElement($products),
-            'start_date' => fake()->dateTimeBetween(now(), '+7 days'),
+            'start_date' => now(),
+            // 'start_date' => fake()->dateTimeBetween(now(), '+7 days'),
             'end_date' => fake()->dateTimeBetween('+7 days', '+ 14 days'),
             'discount_percentage' => fake()->numberBetween(5, 50),
         ];

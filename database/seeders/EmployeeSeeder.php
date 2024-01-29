@@ -13,8 +13,6 @@ class EmployeeSeeder extends Seeder
      */
     public function run(): void
     {
-        Employee::factory(50)->create();
-
         Employee::factory()->create(["employee_position_id" => 2,"image" => "chef-2.jpeg","status" => "active"]);
         Employee::factory()->create(["employee_position_id" => 3,"image" => "chef-3.jpeg","status" => "active"]);
         Employee::factory()->create(["employee_position_id" => 1,"image" => "chef-1.jpeg","status" => "active"]);
@@ -35,5 +33,7 @@ class EmployeeSeeder extends Seeder
         Employee::factory()->create(["employee_position_id" => 6,"image" => "chef-17.jpeg","status" => "active"]);
         Employee::factory()->create(["employee_position_id" => 10,"image" => "chef-20.jpeg","status" => "active"]);
         Employee::factory()->create(["employee_position_id" => 7,"image" => "chef-18.jpeg","status" => "active"]);
+
+        Employee::factory(50)->create();
     }
 }

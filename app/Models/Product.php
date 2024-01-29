@@ -48,6 +48,11 @@ class Product extends Model
         );
     }
 
+    public function productReviews(): HasMany
+    {
+        return $this->hasMany(ProductReview::class);
+    }
+
     public function addons(): HasMany
     {
         return $this->hasMany(Addon::class);
@@ -78,6 +83,20 @@ class Product extends Model
         if (! empty($productImage) && file_exists(storage_path('app/public/products/'.pathinfo($productImage, PATHINFO_BASENAME)))) {
             unlink(storage_path('app/public/products/'.pathinfo($productImage, PATHINFO_BASENAME)));
         }
+    }
+
+    public function scopeWithPublishedReviewCount(Builder $query)
+    {
+        return $query->withCount(['productReviews' => function ($query) {
+            $query->where('status', 'published');
+        }]);
+    }
+
+    public function scopeWithPublishedReviewAvg(Builder $query)
+    {
+        return $query->withAvg(['productReviews' => function ($query) {
+            $query->where('status', 'published');
+        }], 'rating');
     }
 
     public function scopeFilterBy(Builder $query, ?array $filterBy): Builder
