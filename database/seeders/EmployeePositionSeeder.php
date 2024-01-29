@@ -16,9 +16,17 @@ class EmployeePositionSeeder extends Seeder
     {
         EmployeePosition::create(["name" => "Head Chef"]);
         EmployeePosition::create(["name" => "Sous Chef"]);
+        EmployeePosition::create(["name" => "Line Chef"]);
+        EmployeePosition::create(["name" => "Prep Chef"]);
+        EmployeePosition::create(["name" => "Pastry Chef"]);
+        EmployeePosition::create(["name" => "Executive Chef"]);
+        EmployeePosition::create(["name" => "Chef de Chef"]);
+        EmployeePosition::create(["name" => "Grill Chef"]);
+        EmployeePosition::create(["name" => "Garde Manger Chef"]);
+        EmployeePosition::create(["name" => "Saute Chef"]);
+        EmployeePosition::create(["name" => "Banquet Chef"]);
         EmployeePosition::create(["name" => "Line Cook"]);
         EmployeePosition::create(["name" => "Prep Cook"]);
-        EmployeePosition::create(["name" => "Pastry Chef"]);
         EmployeePosition::create(["name" => "Restaurant Manager"]);
         EmployeePosition::create(["name" => "Assistant Manager"]);
         EmployeePosition::create(["name" => "Host/Hostess"]);
