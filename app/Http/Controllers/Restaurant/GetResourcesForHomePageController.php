@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Restaurant;
 
 use App\Http\Controllers\Controller;
 use App\Models\BlogContent;
-use App\Models\DailyOffer;
 use App\Models\Employee;
 use App\Models\Product;
 use Illuminate\Http\JsonResponse;
@@ -15,18 +14,6 @@ class GetResourcesForHomePageController extends Controller
     public function __invoke(): JsonResponse
     {
         try {
-            $dailyOffers = DailyOffer::with(['product' => function ($query) {
-                $query
-                ->select("id", "category_id", "image", "name", "ingredients", "base_price", "discount_price")
-                ->withPublishedReviewCount()
-                ->withPublishedReviewAvg()
-                ->where('status', 'published');
-            }])
-            ->whereDate('start_date', '<=', now())
-            ->whereDate('end_date', '>=', now())
-            ->latest()
-            ->get();
-
             $popularFoods = Product::select("id", "category_id", "image", "name", "ingredients", "base_price", "discount_price")
             ->withPublishedReviewCount()
             ->withPublishedReviewAvg()
@@ -53,7 +40,6 @@ class GetResourcesForHomePageController extends Controller
             ->get();
 
             return response()->json([
-                    'dailyOffers' => $dailyOffers,
                     'popularFoods' => $popularFoods,
                     'ourChefs' => $ourChefs,
                     'latestBlogs' => $latestBlogs,

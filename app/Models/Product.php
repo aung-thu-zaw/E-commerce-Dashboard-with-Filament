@@ -68,11 +68,6 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function dailyOffer(): HasOne
-    {
-        return $this->hasOne(DailyOffer::class);
-    }
-
     public function coupons(): HasMany
     {
         return $this->hasMany(Coupon::class, 'free_item_id');
