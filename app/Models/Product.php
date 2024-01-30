@@ -100,10 +100,33 @@ class Product extends Model
             ->when(isset($filterBy['status']) && in_array($filterBy['status'], ['draft', 'published', 'hidden']), function ($query) use ($filterBy) {
                 $query->where('status', $filterBy['status']);
             })
+
             ->when(isset($filterBy['category']) && $filterBy['category'] !== '', function ($query) use ($filterBy) {
                 $query->whereHas('category', function ($query) use ($filterBy) {
                     $query->where('slug', $filterBy['category']);
                 });
+            })
+
+            ->when(isset($filterBy['rating']) && $filterBy['rating'] !== '', function ($query) use ($filterBy) {
+                $query->whereHas('productReviews', function ($query) use ($filterBy) {
+                    $query->where("status", "published")->havingRaw('AVG(product_reviews.rating) = ?', [$filterBy["rating"]]);
+                });
             });
+    }
+
+    public function scopeSortBy(Builder $query, ?string $sortType)
+    {
+        switch ($sortType) {
+            case 'latest':
+                return $query->latest();
+            case 'earliest':
+                return $query->orderBy('id', 'asc');
+            case 'price_low_to_high':
+                return $query->orderByRaw('COALESCE(discount_price, base_price) asc');
+            case 'price_high_to_low':
+                return $query->orderByRaw('COALESCE(discount_price, base_price) desc');
+            default:
+                return $query->orderBy('id', 'desc');
+        }
     }
 }

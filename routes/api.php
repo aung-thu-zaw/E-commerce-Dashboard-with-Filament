@@ -7,6 +7,8 @@ use App\Http\Controllers\Restaurant\Blogs\BlogController;
 use App\Http\Controllers\Restaurant\Blogs\GetResourcesForBlogPageController;
 use App\Http\Controllers\Restaurant\ChefController;
 use App\Http\Controllers\Restaurant\GetResourcesForHomePageController;
+use App\Http\Controllers\Restaurant\Menus\GetResourcesForMenuFilter;
+use App\Http\Controllers\Restaurant\Menus\MenuController;
 use App\Http\Controllers\Restaurant\SendContactEmailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +31,9 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 Route::get('abilities', AbilityController::class);
 
 Route::get('/resources/for-home', GetResourcesForHomePageController::class);
+
+Route::get('/menus', [MenuController::class,"index"]);
+Route::get('/resources/for-menu-filter', GetResourcesForMenuFilter::class);
 
 Route::get('/chefs', [ChefController::class,"index"]);
 
