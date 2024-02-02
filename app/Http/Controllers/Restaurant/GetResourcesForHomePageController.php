@@ -14,7 +14,7 @@ class GetResourcesForHomePageController extends Controller
     public function __invoke(): JsonResponse
     {
         try {
-            $popularFoods = Product::select("id", "category_id", "image", "name", "ingredients", "base_price", "discount_price")
+            $popularFoods = Product::select("id", "category_id", "image", "name", "slug", "ingredients", "base_price", "discount_price")
             ->withPublishedReviewCount()
             ->withPublishedReviewAvg()
             ->where("status", "published")

@@ -33,6 +33,7 @@ Route::get('abilities', AbilityController::class);
 Route::get('/resources/for-home', GetResourcesForHomePageController::class);
 
 Route::get('/menus', [MenuController::class,"index"]);
+Route::get('/menus/{product}', [MenuController::class,"show"]);
 Route::get('/resources/for-menu-filter', GetResourcesForMenuFilter::class);
 
 Route::get('/chefs', [ChefController::class,"index"]);
