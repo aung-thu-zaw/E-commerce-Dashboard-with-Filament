@@ -20,6 +20,11 @@ return new class () extends Migration {
             $table->enum('payment_status', ['pending', 'completed'])->default('pending');
             $table->timestamp('purchased_at')->nullable();
             $table->decimal('total_amount', 8, 2);
+            $table->string('contact_person_name');
+            $table->string('contact_phone');
+            $table->string('address');
+            $table->string('order_note');
+            $table->string('delivery_area');
             $table->string('delivery_area');
             $table->string('shipping_method');
             $table->double('shipping_fee', 8, 2);
