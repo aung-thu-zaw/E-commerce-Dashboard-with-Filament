@@ -10,6 +10,12 @@ class CartItem extends Model
 {
     use HasFactory;
 
+
+    protected $casts = [
+        'addons' => 'json',
+    ];
+
+
     public function cart(): BelongsTo
     {
         return $this->belongsTo(Cart::class);

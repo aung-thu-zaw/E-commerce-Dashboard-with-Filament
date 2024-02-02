@@ -17,7 +17,7 @@ return new class () extends Migration {
             $table->integer('qty');
             $table->decimal('unit_price', 8, 2);
             $table->decimal('total_price', 8, 2);
-            $table->json('attributes')->nullable();
+            $table->json('addons')->nullable();
             $table->timestamps();
         });
     }

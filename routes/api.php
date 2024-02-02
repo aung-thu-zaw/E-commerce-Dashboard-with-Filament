@@ -5,6 +5,8 @@ use App\Http\Controllers\Restaurant\Blogs\BlogCommentController;
 use App\Http\Controllers\Restaurant\Blogs\BlogCommentReplyController;
 use App\Http\Controllers\Restaurant\Blogs\BlogController;
 use App\Http\Controllers\Restaurant\Blogs\GetResourcesForBlogPageController;
+use App\Http\Controllers\Restaurant\CartController;
+use App\Http\Controllers\Restaurant\CartItemController;
 use App\Http\Controllers\Restaurant\ChefController;
 use App\Http\Controllers\Restaurant\GetResourcesForHomePageController;
 use App\Http\Controllers\Restaurant\Menus\GetResourcesForMenuFilter;
@@ -45,5 +47,11 @@ Route::post('/blogs/{blog_content}/comments', BlogCommentController::class);
 Route::post('/blogs/{blog_content}/comments/{blog_comment}/replies', BlogCommentReplyController::class);
 
 Route::post('/contact/send-email', SendContactEmailController::class);
+
+Route::get('/cart', CartController::class);
+
+Route::post('/cart/cart-items', [CartItemController::class,'store']);
+Route::patch('/cart/cart-items/{cart_item}', [CartItemController::class,'update']);
+Route::delete('/cart/cart-items/{cart_item}', [CartItemController::class,'destroy']);
 
 require __DIR__.'/admin.php';
