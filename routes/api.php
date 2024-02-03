@@ -63,3 +63,4 @@ Route::get('/checkout/get-information', [CheckoutInformationController::class,"i
 Route::post('/checkout/store-information', [CheckoutInformationController::class,"store"]);
 
 require __DIR__.'/admin.php';
+require __DIR__.'/user.php';
