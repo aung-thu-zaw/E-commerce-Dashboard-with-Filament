@@ -13,9 +13,14 @@ class WishlistController extends Controller
     public function index(): JsonResponse
     {
         try {
-            $wishlists = Wishlist::with(['product.addons'])
-            ->where('user_id', auth()->id())
-            ->get();
+            $wishlists = Wishlist::with(['product' => function ($query) {
+                $query->select('id', 'category_id', 'image', 'name', 'slug', 'ingredients', 'base_price', 'discount_price')
+                ->filterBy(request(['rating', 'category']))
+                ->withPublishedReviewCount()
+                ->withPublishedReviewAvg();
+            }])
+                ->where('user_id', auth()->id())
+                ->get();
 
             return response()->json($wishlists, 200);
         } catch (\Exception $e) {
@@ -26,7 +31,6 @@ class WishlistController extends Controller
     public function store(WishlistRequest $request): JsonResponse
     {
         try {
-
             $addons = $request->addons;
 
             $newWishlist = Wishlist::create([
@@ -36,8 +40,6 @@ class WishlistController extends Controller
             ]);
 
             return response()->json($newWishlist, 200);
-
-
         } catch (\Exception $e) {
             $this->apiExceptionResponse($e);
         }
