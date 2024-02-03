@@ -24,10 +24,9 @@ return new class () extends Migration {
             $table->string('contact_phone');
             $table->string('address');
             $table->string('order_note');
-            $table->string('delivery_area');
-            $table->string('delivery_area');
             $table->string('shipping_method');
-            $table->double('shipping_fee', 8, 2);
+            $table->string('delivery_area');
+            $table->double('shipping_cost', 8, 2);
             $table->enum('coupon_type', ['fixed', 'percentage','free_item'])->nullable();
             $table->string('coupon_amount')->nullable();
             $table->enum('status', ['pending', 'cancelled', 'on_delivery', 'delivered'])->default('pending');

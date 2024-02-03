@@ -14,6 +14,7 @@ use App\Http\Controllers\Restaurant\GetResourcesForHomePageController;
 use App\Http\Controllers\Restaurant\Menus\GetResourcesForMenuFilter;
 use App\Http\Controllers\Restaurant\Menus\MenuController;
 use App\Http\Controllers\Restaurant\SendContactEmailController;
+use App\Http\Controllers\Restaurant\WishlistController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -50,8 +51,9 @@ Route::post('/blogs/{blog_content}/comments/{blog_comment}/replies', BlogComment
 
 Route::post('/contact/send-email', SendContactEmailController::class);
 
-Route::get('/cart', CartController::class);
+Route::resource('/wishlists', WishlistController::class)->only(['index','store', 'destroy']);
 
+Route::get('/cart', CartController::class);
 Route::post('/cart/cart-items', [CartItemController::class,'store']);
 Route::patch('/cart/cart-items/{cart_item}', [CartItemController::class,'update']);
 Route::delete('/cart/cart-items/{cart_item}', [CartItemController::class,'destroy']);
