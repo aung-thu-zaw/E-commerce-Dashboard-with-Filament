@@ -32,6 +32,7 @@ class CheckoutInformationController extends Controller
             session()->put('checkout-information', [
                    'contact_name' => $request->contact_name,
                    'contact_phone' => $request->contact_phone,
+                   'contact_email' => $request->contact_email,
                    'address' => $request->address,
                    'shipping_method' => $request->shipping_method,
                    'shipping_cost' => $request->shipping_cost,

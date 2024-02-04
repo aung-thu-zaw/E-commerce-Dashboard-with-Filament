@@ -23,6 +23,7 @@ return new class () extends Migration {
             $table->decimal('total_amount', 8, 2);
             $table->string('contact_person_name');
             $table->string('contact_phone');
+            $table->string('contact_email');
             $table->string('address');
             $table->string('order_note');
             $table->string('shipping_method');

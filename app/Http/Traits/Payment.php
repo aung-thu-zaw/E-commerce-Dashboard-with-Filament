@@ -26,6 +26,7 @@ trait Payment
                 'total_amount' => $totalAmount,
                 'contact_person_name' => session('checkout-information')['contact_name'],
                 'contact_phone' => session('checkout-information')['contact_phone'],
+                'contact_email' => session('checkout-information')['contact_email'],
                 'address' => session('checkout-information')['address'],
                 'order_note' => session('checkout-information')['order_note'],
                 'delivery_area' => session('checkout-information')['delivery_area'],
