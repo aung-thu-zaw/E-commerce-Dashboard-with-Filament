@@ -13,6 +13,7 @@ return new class () extends Migration {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
+            $table->string('order_no');
             $table->string('invoice_no');
             $table->string('uuid');
             $table->integer('product_qty');
@@ -29,7 +30,7 @@ return new class () extends Migration {
             $table->double('shipping_cost', 8, 2);
             $table->enum('coupon_type', ['fixed', 'percentage','free_item'])->nullable();
             $table->string('coupon_amount')->nullable();
-            $table->enum('status', ['pending', 'cancelled', 'on_delivery', 'delivered'])->default('pending');
+            $table->enum('status', ['pending','confirmed', 'cancelled', 'on_delivery', 'delivered'])->default('pending');
             $table->timestamps();
         });
     }

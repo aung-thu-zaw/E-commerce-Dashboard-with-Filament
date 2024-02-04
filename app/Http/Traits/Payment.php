@@ -17,7 +17,8 @@ trait Payment
             $order = Order::create([
                 'uuid' => Str::uuid(),
                 'user_id' => auth()->id(),
-                'invoice_no' => 'E-COMMERCE'.mt_rand(100000000, 999999999),
+                'order_no' => '#'.uniqid(),
+                'invoice_no' => 'RESTAURANT'.mt_rand(100000000, 999999999),
                 'product_qty' => $cartItems->sum('qty'),
                 'payment_method' => $paymentMethod,
                 'purchased_at' => $paymentStatus === 'completed' && $paymentMethod !== 'cash on delivery' ? now() : null,
@@ -40,7 +41,7 @@ trait Payment
                        'order_id' => $order->id,
                        'product_id' => $item->product_id,
                        'qty' => $item->qty,
-                       'addons' => $item->addons,
+                       'addons' => $item->addons ? json_encode($item->addons) : null,
                        'unit_price' => $item->unit_price,
                        'total_price' => $item->total_price,
                    ]);
