@@ -16,7 +16,7 @@ return new class () extends Migration {
             $table->string('invoice_no');
             $table->string('uuid');
             $table->integer('product_qty');
-            $table->enum('payment_method', ['card', 'paypal', 'cash on delivery']);
+            $table->enum('payment_method', ['card', 'paypal', 'cash_on_delivery']);
             $table->enum('payment_status', ['pending', 'completed'])->default('pending');
             $table->timestamp('purchased_at')->nullable();
             $table->decimal('total_amount', 8, 2);

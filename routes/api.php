@@ -13,6 +13,7 @@ use App\Http\Controllers\Restaurant\ChefController;
 use App\Http\Controllers\Restaurant\GetResourcesForHomePageController;
 use App\Http\Controllers\Restaurant\Menus\GetResourcesForMenuFilter;
 use App\Http\Controllers\Restaurant\Menus\MenuController;
+use App\Http\Controllers\Restaurant\Payments\CashOnDeliveryController;
 use App\Http\Controllers\Restaurant\SendContactEmailController;
 use App\Http\Controllers\Restaurant\WishlistController;
 use Illuminate\Http\Request;
@@ -61,6 +62,8 @@ Route::delete('/cart/cart-items/{cart_item}', [CartItemController::class,'destro
 Route::get('/resources/for-checkout', GetResourcesForCheckoutFormController::class);
 Route::get('/checkout/get-information', [CheckoutInformationController::class,"index"]);
 Route::post('/checkout/store-information', [CheckoutInformationController::class,"store"]);
+
+Route::post('/payment/cash/pay', CashOnDeliveryController::class);
 
 require __DIR__.'/admin.php';
 require __DIR__.'/user.php';
