@@ -19,6 +19,15 @@ class Product extends Model
     use HasSlug;
     use Searchable;
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'is_available' => 'boolean',
+    ];
+
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
@@ -121,10 +130,16 @@ class Product extends Model
                 return $query->latest();
             case 'earliest':
                 return $query->orderBy('id', 'asc');
+            case 'high_to_low_stock':
+                return $query->orderBy('qty', 'desc');
+            case 'low_to_high_stock':
+                return $query->orderBy('qty', 'asc');
             case 'price_low_to_high':
                 return $query->orderByRaw('COALESCE(discount_price, base_price) asc');
             case 'price_high_to_low':
                 return $query->orderByRaw('COALESCE(discount_price, base_price) desc');
+            case 'id':
+                return $query->orderBy('id', 'desc');
             default:
                 return $query->orderBy('id', 'desc');
         }

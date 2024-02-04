@@ -28,6 +28,8 @@ use App\Http\Controllers\Admin\ManageReservation\ReservationTimeController;
 use App\Http\Controllers\Admin\ManageReservation\TableController;
 use App\Http\Controllers\Admin\ManageShipping\DeliveryAreaController;
 use App\Http\Controllers\Admin\ManageShipping\ShippingMethodController;
+use App\Http\Controllers\Admin\MenuStocks\GetResourcesForMenuStockFilter;
+use App\Http\Controllers\Admin\MenuStocks\MenuStockController;
 use App\Http\Controllers\Admin\Newsletter\SendNewsletterController;
 use App\Http\Controllers\Admin\Newsletter\SubscriberController;
 use App\Http\Controllers\Admin\ProductReviews\ChangeProductReviewStatusController;
@@ -36,7 +38,6 @@ use App\Http\Controllers\Admin\Products\ChangeProductStatusController;
 use App\Http\Controllers\Admin\Products\DeleteProductAdditionalImageController;
 use App\Http\Controllers\Admin\Products\GetResourcesForProductFormController;
 use App\Http\Controllers\Admin\Products\ProductController;
-use Database\Seeders\EmployeePositionSeeder;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth:sanctum', 'verified', 'admin'])
@@ -78,15 +79,15 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])
 
         Route::post('/send-newsletter', SendNewsletterController::class)->middleware(['permission:newsletter.send']);
 
+        Route::get('/menu-stocks', [MenuStockController::class,"index"]);
+        Route::patch('/menu-stocks/{product}', [MenuStockController::class,"update"]);
+        Route::get('/resources/for-stock', GetResourcesForMenuStockFilter::class);
+
         Route::apiResource('employee-positions', EmployeePositionController::class);
 
         Route::apiResource('employees', EmployeeController::class);
         Route::put('/employees/{employee}/change-status', ChangeEmployeeStatusController::class)->middleware(['permission:employees.edit']);
         Route::get('/resources/for-employee', GetResourcesForEmployeeFormController::class)->middleware(['permission:employees.create', 'permission:employees.edit']);
-
-
-
-
 
         Route::get('/registered-accounts', [RegisteredAccountController::class, 'index']);
         Route::delete('/registered-accounts/{user}', [RegisteredAccountController::class, 'destroy']);
