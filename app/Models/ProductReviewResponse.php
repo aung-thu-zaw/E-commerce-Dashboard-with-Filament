@@ -14,4 +14,9 @@ class ProductReviewResponse extends Model
     {
         return $this->belongsTo(ProductReview::class);
     }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, "response_by");
+    }
 }

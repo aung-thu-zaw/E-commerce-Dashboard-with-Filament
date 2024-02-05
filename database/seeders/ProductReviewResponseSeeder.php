@@ -12,6 +12,6 @@ class ProductReviewResponseSeeder extends Seeder
      */
     public function run(): void
     {
-        ProductReviewResponse::factory(50)->create();
+        ProductReviewResponse::factory(100)->create();
     }
 }

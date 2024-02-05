@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Restaurant\Menus;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\ProductReview;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -48,6 +49,16 @@ class MenuController extends Controller
                 $query->where('status', 'published');
             }]);
 
+            $productReviews = ProductReview::with([
+                'reviewer:id,name,avatar',
+                'productReviewResponse.user:id,name,avatar',
+            ])
+                ->where('product_id', $product->id)
+                ->where('status', 'published')
+                ->orderBy("id", "desc")
+                ->paginate(8)
+                ->withQueryString();
+
             $relatedItems = Product::select('id', 'category_id', 'image', 'name', 'slug', 'ingredients', 'base_price', 'discount_price')
             ->withPublishedReviewCount()
             ->withPublishedReviewAvg()
@@ -60,7 +71,7 @@ class MenuController extends Controller
                 [
                     'product' => $product,
                     "relatedItems" => $relatedItems,
-                    // "comments" => $blogComments
+                    "productReviews" => $productReviews
                 ],
                 200,
             );

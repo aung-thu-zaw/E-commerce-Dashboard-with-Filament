@@ -14,6 +14,9 @@ use App\Http\Controllers\Restaurant\GetResourcesForHomePageController;
 use App\Http\Controllers\Restaurant\Menus\GetResourcesForMenuFilter;
 use App\Http\Controllers\Restaurant\Menus\MenuController;
 use App\Http\Controllers\Restaurant\Payments\CashOnDeliveryController;
+use App\Http\Controllers\Restaurant\Reviews\ProductReviewController;
+use App\Http\Controllers\Restaurant\Reviews\ProductReviewReplyController;
+use App\Http\Controllers\Restaurant\Reviews\ProductReviewResponseController;
 use App\Http\Controllers\Restaurant\SendContactEmailController;
 use App\Http\Controllers\Restaurant\WishlistController;
 use Illuminate\Http\Request;
@@ -53,6 +56,9 @@ Route::post('/blogs/{blog_content}/comments/{blog_comment}/replies', BlogComment
 Route::post('/contact/send-email', SendContactEmailController::class);
 
 Route::resource('/wishlists', WishlistController::class)->only(['index','store', 'destroy']);
+
+Route::post('/products/{product}/reviews', ProductReviewController::class);
+Route::post('/products/{product}/reviews/{review}/responses', ProductReviewResponseController::class);
 
 Route::get('/cart', CartController::class);
 Route::post('/cart/cart-items', [CartItemController::class,'store']);

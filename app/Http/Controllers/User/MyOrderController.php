@@ -12,7 +12,7 @@ class MyOrderController extends Controller
     public function index(): JsonResponse
     {
         try {
-            $orders = Order::with('orderItems.product:id,name,slug,image')
+            $orders = Order::with(['orderItems.product.productReviews'])
             ->where('user_id', auth()->id())
             ->orderBy('id', 'desc')
             ->paginate(1)

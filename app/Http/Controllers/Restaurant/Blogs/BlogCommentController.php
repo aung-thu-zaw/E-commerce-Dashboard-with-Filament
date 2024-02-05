@@ -21,7 +21,7 @@ class BlogCommentController extends Controller
                 'comment' => $request->comment,
             ]);
 
-            return response()->json($blogContent, 200);
+            return response()->json($blogComment, 200);
         } catch (\Exception $e) {
             $this->apiExceptionResponse($e);
         }
