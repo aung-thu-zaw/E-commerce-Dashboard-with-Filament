@@ -14,6 +14,8 @@ use App\Http\Controllers\Admin\Categories\ChangeCategoryStatusController;
 use App\Http\Controllers\Admin\Coupons\ChangeCouponStatusController;
 use App\Http\Controllers\Admin\Coupons\CouponController;
 use App\Http\Controllers\Admin\Coupons\GetResourcesForCouponFormController;
+use App\Http\Controllers\Admin\CustomerOrderController;
+use App\Http\Controllers\Admin\CustomerOrderControlller;
 use App\Http\Controllers\Admin\DatabaseBackupController;
 use App\Http\Controllers\Admin\EmployeeManagement\Employees\EmployeeController;
 use App\Http\Controllers\Admin\EmployeeManagement\EmployeePositionController;
@@ -78,6 +80,8 @@ Route::middleware(['auth:sanctum', 'verified', 'admin'])
         Route::apiResource('subscribers', SubscriberController::class)->only(['index', 'destroy']);
 
         Route::post('/send-newsletter', SendNewsletterController::class)->middleware(['permission:newsletter.send']);
+
+        Route::apiResource('/orders', CustomerOrderController::class)->only(["index","show","update"]);
 
         Route::get('/menu-stocks', [MenuStockController::class,"index"]);
         Route::patch('/menu-stocks/{product}', [MenuStockController::class,"update"]);

@@ -72,6 +72,9 @@ class PermissionSeeder extends Seeder
 
         Permission::create(['name' => 'chat-box.message', 'group' => 'Chat Box']);
 
+        Permission::create(['name' => 'orders.view', 'group' => 'Order Management']);
+        Permission::create(['name' => 'orders.edit', 'group' => 'Order Management']);
+
         Permission::create(['name' => 'menu-stocks.view', 'group' => 'Menu Stock']);
         Permission::create(['name' => 'menu-stocks.edit', 'group' => 'Menu Stock']);
 
